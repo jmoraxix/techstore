@@ -1,5 +1,6 @@
-package com.techstore.web;
+package com.techstore.web.config;
 
+import com.techstore.web.TechStoreApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
