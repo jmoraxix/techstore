@@ -9,11 +9,11 @@ import javax.persistence.*;
 @Data
 @Entity
 @Validated
-@Table(name="marcas")
-public class Marcas {
+@Table(name="marca")
+public class Marca {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int codigo;
+    private long id;
 
     @NotNull
     private String nombre;

@@ -1,7 +1,8 @@
 package com.techstore.web.controller;
 
-import com.techstore.web.dao.MarcasRepository;
-import com.techstore.web.model.Marcas;
+import com.techstore.web.dao.MarcaRepository;
+import com.techstore.web.dao.MarcaRepository;
+import com.techstore.web.model.Marca;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -15,15 +16,15 @@ import java.util.List;
 @Log4j2
 @RequestMapping("/marcas")
 
-public class MarcasController{
+public class MarcaController{
 
     @Autowired
-    private MarcasRepository marcasRepository;
+    private MarcaRepository marcaRepository;
 
     @GetMapping("/")
     public ModelAndView listarMarcas(ModelMap model){
 
-        List<Marcas> listaMarcas=marcasRepository.findAll();
+        List<Marca> listaMarcas=marcaRepository.findAll();
 
         model.addAttribute("listaMarcas", listaMarcas);
 
