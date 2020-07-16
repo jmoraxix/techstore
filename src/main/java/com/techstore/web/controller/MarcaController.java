@@ -15,7 +15,6 @@ import java.util.List;
 @RestController
 @Log4j2
 @RequestMapping("/marcas")
-
 public class MarcaController{
 
     @Autowired
@@ -23,11 +22,8 @@ public class MarcaController{
 
     @GetMapping("/")
     public ModelAndView listarMarcas(ModelMap model){
-
         List<Marca> listaMarcas=marcaRepository.findAll();
-
         model.addAttribute("listaMarcas", listaMarcas);
-
         return new ModelAndView("marcas/listar-marcas", model);
     }
 }

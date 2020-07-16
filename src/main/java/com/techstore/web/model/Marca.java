@@ -17,6 +17,4 @@ public class Marca {
 
     @NotNull
     private String nombre;
-
-
 }
