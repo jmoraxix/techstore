@@ -19,13 +19,13 @@ public class Sucursal {
     private String codigo;
 
     @NotNull
-    private String Provincia;
+    private String provincia;
 
     @NotNull
-    private String Canton;
+    private String canton;
 
     @NotNull
-    private String Distrito;
+    private String distrito;
 
     @NotNull
     @Column(unique=true)

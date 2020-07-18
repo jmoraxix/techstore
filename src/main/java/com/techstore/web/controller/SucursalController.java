@@ -1,10 +1,6 @@
 package com.techstore.web.controller;
 import com.techstore.web.dao.SucursalRepository;
-import com.techstore.web.dao.UsuarioRepository;
-import com.techstore.web.model.RolUsuario;
 import com.techstore.web.model.Sucursal;
-import com.techstore.web.model.Usuario;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -24,8 +20,8 @@ public class SucursalController {
 
     @GetMapping("/")
     public ModelAndView listarSucursales(ModelMap model){
-        List<Sucursal> listarSucursales = sucursalRepository.findAll();
-        model.addAttribute("listarSucursales", listarSucursales);
-        return new ModelAndView("sucursal/listarSucursales", model);
+        List<Sucursal> listaSucursales = sucursalRepository.findAll();
+        model.addAttribute("listarSucursales", listaSucursales);
+        return new ModelAndView("Sucursal/listarSucursales", model);
     }
 }
