@@ -23,9 +23,9 @@ public class SucursalController {
     private  SucursalRepository sucursalRepository;
 
     @GetMapping("/")
-    public ModelAndView listarSucursales(ModelMap model){
+    public ModelAndView listarsucursales(ModelMap model){
         List<Sucursal> listarSucursales = sucursalRepository.findAll();
-        model.addAttribute("listarSucursales", listarSucursales);
-        return new ModelAndView("Sucursal/listarSucursales", model);
+        model.addAttribute("listarsucursales", listarSucursales);
+        return new ModelAndView("sucursal/listarsucursales", model);
     }
 }
