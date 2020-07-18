@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Lista Roles</title>
     <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
     </th:block> /*/-->
+    <title>Lista Roles</title>
 </head>
 <body>
     <div class="container">
@@ -20,9 +20,9 @@
                     <!--Table head-->
                     <thead>
                         <tr>
-                            <th>C&oacutedigo</th>
+                            <th>C&oacute;digo</th>
                             <th>Rol</th>
-                            <th>Descripci&oacuten</th>
+                            <th>Descripci&oacute;n</th>
                             <th>Ver</th>
                             <th>Editar</th>
                             <th>Eliminar</th>
@@ -38,10 +38,9 @@
                             <td scope="row" th:text="${rolTmp.id}"/>
                             <td th:text="${rolTmp.nombre}"/>
                             <td th:text="${rolTmp.descripcion}"/>
-                            <td><a th:href="@{/usuarios/roles/{id}(id=${rolTmp.id})}" class="btn btn-info">View</a></td>
-                            <td><a th:href="@{/usuarios/roles/editar/{id}(id=${rolTmp.id})}" class="btn btn-secondary">Edit</a></td>
-                            <td><a th:href="@{/usuarios/roles/eliminar/{id}(id=${rolTmp.id})}"
-                                   data-confirm="Are you sure?" data-method="delete" rel="nofollow" class="btn btn-danger">Delete</a></td>
+                            <td><a th:href="@{/usuarios/roles/{id}(id=${rolTmp.id})}" class="btn btn-info">Ver</a></td>
+                            <td><a th:href="@{/usuarios/roles/editar/{id}(id=${rolTmp.id})}" class="btn btn-secondary">Editar</a></td>
+                            <td><a th:href="@{/usuarios/roles/eliminar/{id}(id=${rolTmp.id})}" class="btn btn-danger">Eliminar</a></td>
                         </tr>
                     </tbody>
                     <!--Table body-->
