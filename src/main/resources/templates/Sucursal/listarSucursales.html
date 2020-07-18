@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
+<tr>
+    <th>Codigo</th>
+    <th>Provincia</th>
+    <th>Canton</th>
+    <th>Distrito</th>
+    <th>Telefono</th>
+</tr>
+<tr th:each="rolTmp : ${listarSucursales}">
+    <td th:text="${rolTmp.codigo}" />
+    <td th:text="${rolTmp.provincia}" />
+    <td th:text="${rolTmp.canton}" />
+    <td th:text="${rolTmp.distrito}" />
+    <td th:text="${rolTmp.telefono}" />
 </body>
 </html>
