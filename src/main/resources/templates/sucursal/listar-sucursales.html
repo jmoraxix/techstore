@@ -4,6 +4,8 @@
     <title>Sucursal</title>
 </head>
 <body>
+<div>
+<header th:insert="fragments/template.html :: header"></header>
 <tr>
     <th>Codigo</th>
     <th>Provincia</th>
@@ -17,5 +19,6 @@
     <td th:text="${SucursalTemp.canton}" />
     <td th:text="${SucursalTemp.distrito}" />
     <td th:text="${SucursalTemp.telefono}" />
+</div>
 </body>
 </html>
