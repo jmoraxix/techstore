@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 @RestController
 @Log4j2
-@RequestMapping("/Sucursal")
+@RequestMapping("/sucursal")
 public class SucursalController {
 
     @Autowired
