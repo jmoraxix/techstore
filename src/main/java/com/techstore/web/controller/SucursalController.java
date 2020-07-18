@@ -26,6 +26,6 @@ public class SucursalController {
     public ModelAndView listarSucursales(ModelMap model){
         List<Sucursal> listarSucursales = sucursalRepository.findAll();
         model.addAttribute("listarSucursales", listarSucursales);
-        return new ModelAndView("sucursal/listarSucursales", model);
+        return new ModelAndView("Sucursal/listarSucursales", model);
     }
 }
