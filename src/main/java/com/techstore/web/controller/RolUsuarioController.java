@@ -1,18 +1,18 @@
 package com.techstore.web.controller;
 
 import com.techstore.web.dao.RolUsuarioRepository;
-import com.techstore.web.dao.UsuarioRepository;
 import com.techstore.web.model.RolUsuario;
-import com.techstore.web.model.Usuario;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @Log4j2
@@ -27,5 +27,46 @@ public class RolUsuarioController {
         List<RolUsuario> listaRoles = rolUsuarioRepository.findAll();
         model.addAttribute("listaRoles", listaRoles);
         return new ModelAndView("roles/listar-roles", model);
+    }
+
+    @GetMapping("/crear")
+    public ModelAndView crearRol(ModelMap model){
+        model.addAttribute("rol", new RolUsuario());
+        return new ModelAndView("roles/editar-rol", model);
+    }
+
+    @PostMapping(value = "/crear")
+    public ModelAndView guardarNuevoRol(@Valid @ModelAttribute("rol") RolUsuario rol, BindingResult result, RedirectAttributes redirectAttrs) {
+        rolUsuarioRepository.save(rol);
+        redirectAttrs.addFlashAttribute("mensaje", "Nuevo rol creado");
+        return new ModelAndView("redirect:/usuarios/roles/");
+    }
+
+    @GetMapping("/{rolId}")
+    public ModelAndView mostrarRol(@PathVariable Long rolId, ModelMap model){
+        Optional<RolUsuario> rolUsuario = rolUsuarioRepository.findById(rolId);
+        model.addAttribute("rol", rolUsuario.get());
+        return new ModelAndView("roles/ver-rol", model);
+    }
+
+    @GetMapping("/editar/{rolId}")
+    public ModelAndView editarRol(@PathVariable Long rolId, ModelMap model){
+        Optional<RolUsuario> rolUsuario = rolUsuarioRepository.findById(rolId);
+        model.addAttribute("rol", rolUsuario.get());
+        return new ModelAndView("roles/editar-rol", model);
+    }
+
+    @PostMapping(value = "/editar/{rolId}")
+    public ModelAndView updateUser(@Valid @ModelAttribute("rol") RolUsuario rol, BindingResult result, RedirectAttributes redirectAttrs) {
+        rolUsuarioRepository.save(rol);
+        redirectAttrs.addFlashAttribute("mensaje", "Rol actualizado exitosamente");
+        return new ModelAndView("redirect:/usuarios/roles/");
+    }
+
+    @GetMapping("/eliminar/{rolId}")
+    public ModelAndView deleteUser(@PathVariable Long rolId, RedirectAttributes redirectAttrs){
+        rolUsuarioRepository.deleteById(rolId);
+        redirectAttrs.addFlashAttribute("mensaje", "Rol eliminado exitosamente");
+        return new ModelAndView("redirect:/usuarios/roles/");
     }
 }

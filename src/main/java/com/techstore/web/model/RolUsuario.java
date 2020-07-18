@@ -12,11 +12,11 @@ import javax.persistence.*;
 @Table(name="rol_usuario")
 public class RolUsuario {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue
     private long id;
 
     @NotNull
-    private String rol;
+    private String nombre;
 
     private String descripcion;
 
