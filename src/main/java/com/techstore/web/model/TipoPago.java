@@ -12,8 +12,8 @@ import javax.persistence.*;
 @Table(name = "tipo_pago")
 public class TipoPago {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int codigo;
+    @GeneratedValue
+    private int id;
 
     @NotNull
     private String nombre;

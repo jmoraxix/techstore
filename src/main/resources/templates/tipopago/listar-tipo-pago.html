@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
+</th:block> /*/-->
+    <title>Lista Tipo Pago</title>
+</head>
+<body>
+<h1>Tipo Pago</h1>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Descripcion</th>
+    </tr>
+    <tr th:each="tipopagoTmp : ${listaTipoPago}">
+        <td th:text="${tipopagoTmp.id}" />
+        <td th:text="${tipopagoTmp.nombre}" />
+        <td th:text="${tipopagoTmp.descripcion}" />
+    </tr>
+</table>
+</body>
+</html>
