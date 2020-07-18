@@ -1,12 +1,22 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Tech Store</title>
+    <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
+    </th:block> /*/-->
 </head>
 <body>
-<h1>TechStore</h1>
-<a href="/usuarios/">Usuarios</a><br>
-<a href="/usuarios/roles/">Usuarios</a><br>
-<a href="/sucursal/">Sucursal</a>
+<div class="container">
+    <header th:insert="fragments/template.html :: header"></header>
+
+    <div class="jumbotron">
+        <h1>Bienvenido</h1>
+        <br>
+        <a href="/usuarios/">Usuarios</a><br>
+        <a href="/usuarios/roles/">Roles usuarios</a><br>
+        <a href="/sucursal/">Sucursal</a>
+    </div>
+
+    <footer th:replace="fragments/template.html :: footer"></footer>
+</div>
 </body>
 </html>
