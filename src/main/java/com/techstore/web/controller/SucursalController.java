@@ -16,16 +16,16 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 @RestController
 @Log4j2
-@RequestMapping("/sucursal")
+@RequestMapping("/Sucursal")
 public class SucursalController {
 
     @Autowired
     private  SucursalRepository sucursalRepository;
 
     @GetMapping("/")
-    public ModelAndView listarsucursales(ModelMap model){
+    public ModelAndView listarSucursales(ModelMap model){
         List<Sucursal> listarSucursales = sucursalRepository.findAll();
-        model.addAttribute("listarsucursales", listarSucursales);
-        return new ModelAndView("sucursal/listarsucursales", model);
+        model.addAttribute("listarSucursales", listarSucursales);
+        return new ModelAndView("Sucursal/listarSucursales", model);
     }
 }
