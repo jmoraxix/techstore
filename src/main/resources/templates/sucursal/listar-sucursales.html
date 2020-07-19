@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Sucursal</title>
+    <title>Sucursales</title>
 </head>
 <body>
-<div class="container">
-<header th:insert="fragments/template.html :: header"></header>
-    <div class="col-md-8"><h1>Roles/tipos de usuarios</h1></div>
-<tr>
-    <th>Codigo</th>
-    <th>Provincia</th>
-    <th>Canton</th>
-    <th>Distrito</th>
-    <th>Telefono</th>
-</tr>
-<tr th:each="SucursalTemp : ${listarSucursales}">
-    <td th:text="${SucursalTemp.codigo}" />
-    <td th:text="${SucursalTemp.provincia}" />
-    <td th:text="${SucursalTemp.canton}" />
-    <td th:text="${SucursalTemp.distrito}" />
-    <td th:text="${SucursalTemp.telefono}" />
-</div>
+    <div class="container">
+        <header th:insert="fragments/template.html :: header"></header>
+        <div class="col-md-8">
+            <h1>Sucursales</h1>
+        </div>
+        <table>
+            <tr>
+                <th>Codigo</th>
+                <th>Provincia</th>
+                <th>Canton</th>
+                <th>Distrito</th>
+                <th>Telefono</th>
+            </tr>
+            <tr th:each="SucursalTemp : ${listarSucursales}">
+                <td th:text="${SucursalTemp.codigo}" />
+                <td th:text="${SucursalTemp.provincia}" />
+                <td th:text="${SucursalTemp.canton}" />
+                <td th:text="${SucursalTemp.distrito}" />
+                <td th:text="${SucursalTemp.telefono}" />
+        </table>
+        <a th:href="#" class="btn btn-danger">Sucursal</a>
+    </div>
 </body>
 </html>
