@@ -9,14 +9,12 @@ import javax.persistence.*;
 @Data
 @Entity
 @Validated
-@Table(name = "tipo_pago")
-public class TipoPago {
+@Table(name="categoria")
+public class Categoria {
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
 
     @NotNull
     private String nombre;
-
-    private String descripcion;
 }
