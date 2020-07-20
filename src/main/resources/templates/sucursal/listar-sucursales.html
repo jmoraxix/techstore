@@ -11,22 +11,39 @@
         <div class="col-md-8">
             <h1>Sucursales</h1>
         </div>
-        <table>
-            <tr>
-                <th>Codigo</th>
-                <th>Provincia</th>
-                <th>Canton</th>
-                <th>Distrito</th>
-                <th>Telefono</th>
-            </tr>
-            <tr th:each="SucursalTemp : ${listarSucursales}">
-                <td th:text="${SucursalTemp.codigo}" />
-                <td th:text="${SucursalTemp.provincia}" />
-                <td th:text="${SucursalTemp.canton}" />
-                <td th:text="${SucursalTemp.distrito}" />
-                <td th:text="${SucursalTemp.telefono}" />
-        </table>
-        <a class="btn btn-danger">Sucursal</a>
+        <div class="row">
+            <div class="col-md-12">
+                <!--Table-->
+                <table id="userTable" class="table table-striped">
+                    <!--Table head-->
+                    <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Provincia</th>
+                        <th>Canton</th>
+                        <th>Distrito</th>
+                        <th>Telefono</th>
+                    </tr>
+                    </thead>
+                    <!--Table head-->
+                    <!--Table body-->
+                    <tbody>
+                    <tr th:if="${listaSucursal.empty}">
+                        <td colspan="4">No hay sucursales disponibles.</td>
+                    </tr>
+                    <tr th:each="SucursalTemp : ${listarSucursales}">
+                        <td th:text="${SucursalTemp.codigo}" />
+                        <td th:text="${SucursalTemp.provincia}" />
+                        <td th:text="${SucursalTemp.canton}" />
+                        <td th:text="${SucursalTemp.distrito}" />
+                        <td th:text="${SucursalTemp.telefono}" />
+                    </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
         <div th:replace="fragments/template.html :: notificaciones"></div>
         <div th:replace="fragments/template.html :: footer"></div>
     </div>
