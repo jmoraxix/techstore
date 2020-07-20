@@ -17,13 +17,13 @@
                 <table id="tablasucursales" class="table table-striped">
                     <!--Table head-->
                     <thead>
-                    <tr>
-                        <th>Codigo</th>
-                        <th>Provincia</th>
-                        <th>Canton</th>
-                        <th>Distrito</th>
-                        <th>Telefono</th>
-                    </tr>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Provincia</th>
+                            <th>Canton</th>
+                            <th>Distrito</th>
+                            <th>Telefono</th>
+                        </tr>
                     </thead>
                     <!--Table head-->
                     <!--Table body-->
@@ -39,9 +39,7 @@
                         <td th:text="${SucursalTemp.telefono}" />
                     </tr>
                     </tbody>
-
                 </table>
-
             </div>
         </div>
         <div th:replace="fragments/template.html :: notificaciones"></div>
