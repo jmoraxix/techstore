@@ -53,13 +53,13 @@
 
 <div th:fragment="notificaciones">
     <!-- Fragmento para mostrar notificaciones o avisos al iniciar una ventana -->
-    <div th:if="${message != null}">
+    <div th:if="${mensaje != null}">
         <!--Modal-->
         <div class="modal" tabindex="-1" role="dialog" id="messageModal">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
-                        <span th:text="${message}"></span>
+                        <span th:text="${mensaje}"></span>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
