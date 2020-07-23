@@ -2,22 +2,55 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
-</th:block> /*/-->
-    <title>Lista Tipo Pago</title>
+    </th:block> /*/-->
+    <title>Lista Tipo de Pagos</title>
 </head>
 <body>
-<h1>Tipo Pago</h1>
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Nombre</th>
-        <th>Descripcion</th>
-    </tr>
-    <tr th:each="tipopagoTmp : ${listaTipoPago}">
-        <td th:text="${tipopagoTmp.id}" />
-        <td th:text="${tipopagoTmp.nombre}" />
-        <td th:text="${tipopagoTmp.descripcion}" />
-    </tr>
-</table>
+    <div class="container">
+        <header th:insert="fragments/template.html :: header"> </header>
+
+        <div class="row">
+            <div class="col-md-8"><h1>Tipos de Pagos</h1></div>
+            <div class="col-md-4"><div class="float-right"><a th:href="@{/tipopago/crear}" class="btn btn-success">Crear</a></div></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <!--Table-->
+                <table id="userTable" class="table table-striped">
+                    <!--Table head-->
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Descripci&oacute;n</th>
+                            <th>Ver</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <!--Table head-->
+                    <!--Table body-->
+                    <tbody>
+                        <tr th:if="${listaTipoPago.empty}">
+                            <td colspan="4">No hay roles</td>
+                        </tr>
+                        <tr th:each="tipopagoTmp : ${listaTipoPago}">
+                            <td scope="row" th:text="${tipopagoTmp.id}" />
+                            <td th:text="${tipopagoTmp.nombre}"></td>
+                            <td th:text="${tipopagoTmp.descripcion}"></td>
+                            <td><a th:href="@{/tipopago/{id}(id=${tipopagoTmp.id})}" class="btn btn-info">Ver</a></td>
+                            <td><a th:href="@{/tipopago/editar/{id}(id=${tipopagoTmp.id})}" class="btn btn-secondary">Editar</a></td>
+                            <td><a th:href="@{/tipopago/eliminar/{id}(id=${tipopagoTmp.id})}" class="btn btn-danger">Eliminar</a></td>
+                        </tr>
+                    </tbody>
+                    <!--Table body-->
+                </table>
+                <!--Table-->
+            </div>
+        </div>
+
+        <div th:replace="fragments/template.html :: notificaciones"></div>
+        <div th:replace="fragments/template.html :: footer"></div>
+    </div>
 </body>
 </html>
