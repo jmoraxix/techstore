@@ -9,11 +9,11 @@ import javax.persistence.*;
 @Data
 @Entity
 @Validated
-@Table(name = "tipo_pago")
+@Table(name="tipo_pago")
 public class TipoPago {
     @Id
     @GeneratedValue
-    private Long id;
+    private long id;
 
     @NotNull
     private String nombre;

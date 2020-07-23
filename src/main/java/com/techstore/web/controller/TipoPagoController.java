@@ -1,7 +1,6 @@
 package com.techstore.web.controller;
 
 import com.techstore.web.dao.TipoPagoRepository;
-import com.techstore.web.model.RolUsuario;
 import com.techstore.web.model.TipoPago;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +31,7 @@ public class TipoPagoController {
 
     @GetMapping("/crear")
     public ModelAndView crearTipoPago(ModelMap model){
-        model.addAttribute("listaTipoPago", new TipoPago());
+        model.addAttribute("tipoPago", new TipoPago());
         return new ModelAndView("tipopago/editar-tipo-pago", model);
     }
 
