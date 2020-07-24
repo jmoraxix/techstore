@@ -7,28 +7,43 @@
 </head>
 <body>
 <div class="container">
-    <header th:insert="fragments/template.html :: header"> </header>
+    <header th:insert="fragments/template.html :: header"></header>
     <div class="row">
-        <div class="col-12">
-            <h1>Marcas</h1>
-
+        <div class="col-8"><h1>Marcas</h1></div>
+        <div class="col-md-4">
+            <div class="float-right"><a class="btn btn-success" th:href="@{/marcas/crear}">Crear</a></div>
         </div>
     </div>
-    <div class="col-12">
-        <table id="tablaMarcas" class="table table-striped table-bordered">
-            <thead class="thead-light">
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-    </tr>
-            <tbody>
-    <tr th:each="rolTmp : ${listaMarcas}">
-        <td th:text="${rolTmp.id}" />
-        <td th:text="${rolTmp.nombre}" />
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-striped table-bordered" id="tablaMarcas">
+                <thead class="thead-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Ver</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+                </thead>
 
-    </tr>
-        </tbody>
-</table>
+                <tbody>
+                <tr th:if="${listaMarcas.empty}">
+                    <td colspan="4">No hay marcas disponibles.</td>
+                </tr>
+                <tr th:each="marcasTmp : ${listaMarcas}">
+                    <td th:text="${marcasTmp.id}"/>
+                    <td th:text="${marcasTmp.nombre}"/>
+                    <td><a class="btn btn-info" th:href="@{/marcas/{id}(id=${marcasTmp.id})}">Ver</a></td>
+                    <td><a class="btn btn-secondary" th:href="@{/marcas/editar/{id}(id=${marcasTmp.id})}">Editar</a>
+                    </td>
+                    <td><a class="btn btn-danger" th:href="@{/marcas/eliminar/{id}(id=${marcasTmp.id})}">Eliminar</a>
+                    </td>
+                </tr>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 

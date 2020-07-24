@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
+        </th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <header th:insert="fragments/template.html :: header"> </header>
+
+    <div class="row">
+        <div class="col-12">
+            <form action="#" th:object="${marca}">
+                <div class="form-group">
+                    <label for="nombre">Marca</label>
+                    <input class="form-control" id="nombre" name="nombre" placeholder="Nombre de la marca" readonly
+                           type="text" th:value="${marca.nombre}"/>
+                </div>
+                <div class="form-group">
+                    <a th:href="@{/marcas/}" class="btn btn-warning">Volver</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer th:replace="fragments/template.html :: footer"></footer>
+</div>
+</body>
+</html>
