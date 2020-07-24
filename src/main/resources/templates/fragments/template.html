@@ -17,9 +17,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </head>
 <body>
-<div th:fragment="header">
+<header th:fragment="header">
     <!--  Header de la aplicacion  -->
-    <!--    TODO Crear el header de la aplicacion-->
     <nav class="navbar navbar-expand-md navbar-light">
         <a class="navbar-brand" th:href="@{/}">TechStore</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +50,7 @@
             </ul>
         </div>
     </nav>
-</div>
+</header>
 
 
 <div th:fragment="notificaciones">
@@ -78,12 +77,12 @@
     </div>
 </div>
 
-<div th:fragment="footer" th:align="center" class="page-footer fixed-bottom">
+<footer th:fragment="footer" th:align="center" class="page-footer fixed-bottom bg-white">
     <!--  Footer de la aplicacion  -->
     <div class="footer-copyright text-center py-3">
         &copy; <span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2020</span>
         <span>TechStore</span>
     </div>
-</div>
+</footer>
 </body>
 </html>
