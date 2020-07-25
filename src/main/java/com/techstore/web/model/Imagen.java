@@ -3,20 +3,27 @@ package com.techstore.web.model;
 import com.sun.istack.NotNull;
 import lombok.Data;
 import org.springframework.validation.annotation.Validated;
-
 import javax.persistence.*;
+import java.sql.Blob;
 
 @Data
 @Entity
 @Validated
-@Table(name="tipo_pago")
-public class TipoPago {
+@Table(name = "imagen")
+
+public class Imagen {
+
     @Id
-    @GeneratedValue
-    private long id;
+    private int imagen_id;
 
     @NotNull
-    private String nombre;
+    private Blob imagen;
 
-    private String descripcion;
+    @NotNull
+    private String imagen_nombre;
+
+    @NotNull
+    private String ubicacion;
+
+
 }

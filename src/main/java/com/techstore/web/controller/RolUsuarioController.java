@@ -38,7 +38,7 @@ public class RolUsuarioController {
     @PostMapping(value = "/crear")
     public ModelAndView guardarNuevoRol(@Valid @ModelAttribute("rol") RolUsuario rol, BindingResult result, RedirectAttributes redirectAttrs) {
         rolUsuarioRepository.save(rol);
-        redirectAttrs.addFlashAttribute("mensaje", "Nuevo rol creado");
+        redirectAttrs.addFlashAttribute("mensaje", "Rol creado exitosamente");
         return new ModelAndView("redirect:/usuarios/roles/");
     }
 
@@ -57,14 +57,14 @@ public class RolUsuarioController {
     }
 
     @PostMapping(value = "/editar/{rolId}")
-    public ModelAndView updateUser(@Valid @ModelAttribute("rol") RolUsuario rol, BindingResult result, RedirectAttributes redirectAttrs) {
+    public ModelAndView guardarEditarRol(@Valid @ModelAttribute("rol") RolUsuario rol, BindingResult result, RedirectAttributes redirectAttrs) {
         rolUsuarioRepository.save(rol);
         redirectAttrs.addFlashAttribute("mensaje", "Rol actualizado exitosamente");
         return new ModelAndView("redirect:/usuarios/roles/");
     }
 
     @GetMapping("/eliminar/{rolId}")
-    public ModelAndView deleteUser(@PathVariable Long rolId, RedirectAttributes redirectAttrs){
+    public ModelAndView eliminarRol(@PathVariable Long rolId, RedirectAttributes redirectAttrs){
         rolUsuarioRepository.deleteById(rolId);
         redirectAttrs.addFlashAttribute("mensaje", "Rol eliminado exitosamente");
         return new ModelAndView("redirect:/usuarios/roles/");

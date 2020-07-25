@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
+        </th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <header th:insert="fragments/template.html :: header"> </header>
+
+    <div class="row">
+        <div class="col-12">
+            <form th:action="@{/tipopago/editar/{id}(id=${tipoPago.id})}" method="post" th:object="${tipoPago}">
+                <input type="hidden" id="id" name="id" th:value="${tipoPago.id}">
+                <div class="form-row">
+                    <label for="nombre">Tipo</label>
+                    <input class="form-control" id="nombre" name="nombre" placeholder="Nombre del Tipo de Pago"
+                           type="text" th:value="${tipoPago.nombre}"/>
+                </div>
+                <div class="form-row">
+                    <label for="descripcion">Descripci&oacute;n</label>
+                    <input class="form-control" id="descripcion" name="descripcion" placeholder="Descripci&oacute;n del Tipo de Pago"
+                           type="text" th:value="${tipoPago.descripcion}"/>
+                </div>
+                <div class="form-group">
+                    <a th:href="@{/tipopago/}" class="btn btn-warning">Volver</a>
+                    <input class="btn btn-primary" type="submit" value="Guardar">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer th:replace="fragments/template.html :: footer"></footer>
+</div>
+</body>
+</html>
