@@ -13,9 +13,10 @@ import javax.persistence.*;
 public class RolUsuario {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
     @NotNull
+    @Column(unique=true)
     private String nombre;
 
     private String descripcion;
