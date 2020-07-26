@@ -3,11 +3,7 @@ package com.techstore.web.model;
 import com.sun.istack.NotNull;
 import lombok.Data;
 import org.springframework.validation.annotation.Validated;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @Entity
