@@ -4,10 +4,7 @@ import com.sun.istack.NotNull;
 import lombok.Data;
 import org.springframework.validation.annotation.Validated;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -16,12 +13,13 @@ import javax.persistence.Table;
 public class Usuario {
 
     @Id
-    private String usuario;
+    private String nombreUsuario;
 
     @NotNull
     @Column(unique=true)
     private String cedula;
 
+    @NotNull
     private String contrasena;
 
     @NotNull
@@ -39,4 +37,8 @@ public class Usuario {
     private String telefono;
 
     private String direccion;
+
+    @NotNull
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    private RolUsuario rolUsuario;
 }

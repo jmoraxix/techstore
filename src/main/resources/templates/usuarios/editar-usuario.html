@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
+        </th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <header th:insert="fragments/template.html :: header"> </header>
+
+    <div class="row">
+        <div class="col-12">
+            <form th:action="@{/usuarios/{modo}/{id}(modo=${modo},id=${usuario.nombreUsuario})}" method="post" th:object="${usuario}">
+                <label>Usuario</label>
+                <div class="form-group">
+                    <div class="col-8">
+                        <input type="text" th:field="*{nombreUsuario}" placeholder="Usuario"
+                               class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-8">
+                        <input type="password" id="contrasena" name="contrasena" th:value="*{contrasena}" placeholder="Contrase&ntilde;a"
+                               class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-8">
+                        <select class="form-control" th:field="*{rolUsuario.id}">
+                            <option th:each="rol : ${listaRoles}"
+                                    th:value="${rol.id}"
+                                    th:text="${rol.nombre}">Admin</option>
+                        </select>
+                    </div>
+                </div>
+                <label>Datos</label>
+                <div class="form-group">
+                    <div class="col-8">
+                        <input type="text" th:field="*{cedula}" placeholder="N&uacute;mero de cedula"
+                               class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-8">
+                        <input type="text" th:field="*{nombre}" placeholder="Nombre"
+                               class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-8">
+                        <input type="text" th:field="*{primerApellido}" placeholder="Primer Apellido"
+                               class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-8">
+                        <input type="text" th:field="*{segundoApellido}" placeholder="Segundo Apellido"
+                               class="form-control">
+                    </div>
+                </div>
+                <label>Contacto</label>
+                <div class="form-group">
+                    <div class="col-8">
+                        <input type="text" th:field="*{correo}" placeholder="Correo electr&oacute;nico"
+                               class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-8">
+                        <input type="text" th:field="*{telefono}" placeholder="Tel&eacute;fono"
+                               class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-8">
+                        <textarea th:field="*{direccion}" placeholder="Direcci&oacute;n" cols="40" rows="2"
+                                  class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <a th:href="@{/usuarios/}" class="btn btn-warning">Volver</a>
+                    <button name="submit" type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer th:replace="fragments/template.html :: footer"></footer>
+</div>
+</body>
+</html>

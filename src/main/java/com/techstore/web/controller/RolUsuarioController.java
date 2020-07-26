@@ -32,6 +32,7 @@ public class RolUsuarioController {
     @GetMapping("/crear")
     public ModelAndView crearRol(ModelMap model){
         model.addAttribute("rol", new RolUsuario());
+        model.addAttribute("modo", "crear");
         return new ModelAndView("roles/editar-rol", model);
     }
 
@@ -53,6 +54,7 @@ public class RolUsuarioController {
     public ModelAndView editarRol(@PathVariable Long rolId, ModelMap model){
         Optional<RolUsuario> rolUsuario = rolUsuarioRepository.findById(rolId);
         model.addAttribute("rol", rolUsuario.get());
+        model.addAttribute("modo", "editar");
         return new ModelAndView("roles/editar-rol", model);
     }
 
