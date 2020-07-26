@@ -11,25 +11,35 @@
         <div class="col-12">
             <form th:action="@{/sucursal/{codigo}(codigo=${sucursal.codigo})}" method="post" th:object="${sucursal}">
                 <input type="hidden" id="codigo" name="codigo" th:value="${sucursal.codigo}">
-                <div class="form-row">
-                    <label for="provincia">Provincia</label>
-                    <input class="form-control" id="provincia" name="provincia" placeholder="Provincia"
-                           type="text" th:value="${sucursal.provincia}"/>
+                <div class="form-group">
+                    <div class="col-8">
+                        <input type="text" th:field="*{codigo}" placeholder="Codigo"
+                               class="form-control" required>
+                    </div>
                 </div>
-                <div class="form-row">
-                    <label for="distrito">Distrito</label>
-                    <input class="form-control" id="distrito" name="distrito" placeholder="Distrito"
-                           type="text" th:value="${sucursal.distrito}"/>
+                <div class="form-group">
+                    <div class="col-8">
+                        <input type="text" th:field="*{provincia}" placeholder="Provincia"
+                               class="form-control" required>
+                    </div>
                 </div>
-                <div class="form-row">
-                    <label for="canton">Canton</label>
-                    <input class="form-control" id="canton" name="canton" placeholder="Cantón"
-                           type="text" th:value="${sucursal.canton}"/>
+                <div class="form-group">
+                    <div class="col-8">
+                        <input type="text" th:field="*{distrito}" placeholder="Distrito"
+                               class="form-control" required>
+                    </div>
                 </div>
-                <div class="form-row">
-                    <label for="telefono">Telefono</label>
-                    <input class="form-control" id="telefono" name="telefono" placeholder="Teléfono"
-                           type="text" th:value="${sucursal.telefono}"/>
+                <div class="form-group">
+                    <div class="col-8">
+                        <input type="text" th:field="*{canton}" placeholder="Canton"
+                               class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-8">
+                        <input type="text" th:field="*{telefono}" placeholder="telefono"
+                               class="form-control" required>
+                    </div>
                 </div>
                 <div class="form-group">
                     <a th:href="@{/sucursal/}" class="btn btn-warning">Volver</a>
