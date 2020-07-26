@@ -1,6 +1,7 @@
 package com.techstore.web.controller;
 
 import com.techstore.web.dao.SucursalRepository;
+import com.techstore.web.model.RolUsuario;
 import com.techstore.web.model.Sucursal;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,19 +29,38 @@ public class SucursalController {
         model.addAttribute("listaSucursales", listaSucursales);
         return new ModelAndView("sucursal/listar-sucursales", model);
     }
+    @GetMapping("/crear")
+    public ModelAndView crearSucursal(ModelMap model){
+        model.addAttribute("sucursal", new Sucursal());
+        return new ModelAndView("sucursal/editar-sucursales", model);
+    }
 
     @PostMapping(value = "/crear")
-    public ModelAndView crearsucursal(@Valid @ModelAttribute("sucursal") Sucursal sucursal, BindingResult result, RedirectAttributes redirectAttrs){
+    public ModelAndView crearsucursal(@Valid @ModelAttribute("codigo") Sucursal sucursal, BindingResult result, RedirectAttributes redirectAttrs){
         sucursalRepository.save(sucursal);
         redirectAttrs.addFlashAttribute("mensaje", "Sucursal creada exitosamente");
         return new ModelAndView("redirect:/sucursal/");
     }
 
-    @GetMapping("/{SucursalId}")
-    public ModelAndView mostrarSucursal(@PathVariable Long SucursalId, ModelMap model){
+    @GetMapping("/editar/{SucursalId}")
+    public ModelAndView editarSucursal(@PathVariable Long SucursalId, ModelMap model){
         Optional<Sucursal> sucursales = sucursalRepository.findById(SucursalId);
         model.addAttribute("sucursal", sucursales.get());
-        return new ModelAndView("roles/ver-sucursal", model);
+        return new ModelAndView("sucursal/editar-sucursales", model);
+    }
+
+    @GetMapping("/{codigo}")
+    public ModelAndView mostrarSucursal(@PathVariable Long codigo, ModelMap model){
+        Optional<Sucursal> sucursales = sucursalRepository.findById(codigo);
+        model.addAttribute("sucursal", sucursales.get());
+        return new ModelAndView("sucursal/ver-sucursal", model);
+    }
+
+    @GetMapping("/eliminar/{SucursalId}")
+    public ModelAndView deleteTipoPago(@PathVariable Long SucursalId, RedirectAttributes redirectAttrs){
+        sucursalRepository.deleteById(SucursalId);
+        redirectAttrs.addFlashAttribute("mensaje", "Sucursal eliminada exitosamente");
+        return new ModelAndView("redirect:/sucursal/");
     }
 
 

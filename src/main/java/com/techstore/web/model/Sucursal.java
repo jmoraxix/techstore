@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Sucursal {
     @Id
     @Column(unique = true)
-    private String codigo;
+    private Long codigo;
 
     @NotNull
     private String provincia;
