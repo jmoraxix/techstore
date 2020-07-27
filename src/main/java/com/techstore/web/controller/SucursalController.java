@@ -50,8 +50,8 @@ public class SucursalController {
     }
 
     @PostMapping(value = "/editar/{SucursalId}")
-    public ModelAndView guardarSucursal(@Valid @ModelAttribute("codigo") Sucursal sucursal, BindingResult result, RedirectAttributes redirectAttrs){
-        sucursalRepository.save(sucursal);
+    public ModelAndView guardarSucursal(@Valid @ModelAttribute("codigo") Sucursal sucursales, BindingResult result, RedirectAttributes redirectAttrs){
+        sucursalRepository.save(sucursales);
         redirectAttrs.addFlashAttribute("mensaje", "Sucursal actualizada exitosamente");
         return new ModelAndView("redirect:/sucursal/");
     }
