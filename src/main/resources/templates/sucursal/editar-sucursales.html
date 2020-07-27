@@ -7,9 +7,10 @@
 <body>
 <div class="container">
     <header th:insert="fragments/template.html :: header"> </header>
+
     <div class="row">
         <div class="col-12">
-            <form th:action="@{/sucursal/{codigo}(codigo=${sucursal.codigo})}" method="post" th:object="${sucursal}">
+            <form th:action="@{/sucursal/{modo}/{id}(modo=${modo},id=${sucursal.codigo})}" method="post" th:object="${sucursal}">
                 <label>Sucursal</label>
                 <div class="form-group">
                     <div class="col-8">

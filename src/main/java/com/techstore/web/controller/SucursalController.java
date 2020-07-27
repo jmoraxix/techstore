@@ -3,6 +3,7 @@ package com.techstore.web.controller;
 import com.techstore.web.dao.SucursalRepository;
 import com.techstore.web.model.RolUsuario;
 import com.techstore.web.model.Sucursal;
+import com.techstore.web.model.Usuario;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -32,25 +33,28 @@ public class SucursalController {
     @GetMapping("/crear")
     public ModelAndView crearSucursal(ModelMap model){
         model.addAttribute("sucursal", new Sucursal());
+        model.addAttribute("modo", "crear");
         return new ModelAndView("sucursal/editar-sucursales", model);
     }
 
     @PostMapping(value = "/crear")
-    public ModelAndView crearsucursal(@Valid @ModelAttribute("codigo") Sucursal sucursal, BindingResult result, RedirectAttributes redirectAttrs){
+    public ModelAndView crearsucursal(@Valid @ModelAttribute("sucursal") Sucursal sucursal, BindingResult result, RedirectAttributes redirectAttrs){
         sucursalRepository.save(sucursal);
         redirectAttrs.addFlashAttribute("mensaje", "Sucursal creada exitosamente");
         return new ModelAndView("redirect:/sucursal/");
     }
 
-    @GetMapping("/editar/{SucursalId}")
-    public ModelAndView editarSucursal(@PathVariable Long SucursalId, ModelMap model){
-        Optional<Sucursal> sucursales = sucursalRepository.findById(SucursalId);
-        model.addAttribute("sucursal", sucursales.get());
+    @GetMapping("/editar/{codigo}")
+    public ModelAndView editarSucursal(@PathVariable Long codigo, ModelMap model){
+        Sucursal sucursal = sucursalRepository.findByCodigo(codigo);
+        //Optional<Sucursal> sucursales=sucursalRepository.findById(codigo);
+        model.addAttribute("sucursal", sucursal);
+        model.addAttribute("modo", "editar");
         return new ModelAndView("sucursal/editar-sucursales", model);
     }
 
     @PostMapping(value = "/editar/{SucursalId}")
-    public ModelAndView guardarSucursal(@Valid @ModelAttribute("codigo") Sucursal sucursales, BindingResult result, RedirectAttributes redirectAttrs){
+    public ModelAndView guardarSucursal(@Valid @ModelAttribute("sucursal") Sucursal sucursales, BindingResult result, RedirectAttributes redirectAttrs){
         sucursalRepository.save(sucursales);
         redirectAttrs.addFlashAttribute("mensaje", "Sucursal actualizada exitosamente");
         return new ModelAndView("redirect:/sucursal/");
@@ -64,14 +68,10 @@ public class SucursalController {
     }
 
     @GetMapping("/eliminar/{SucursalId}")
-    public ModelAndView deleteTipoPago(@PathVariable Long SucursalId, RedirectAttributes redirectAttrs){
+    public ModelAndView deleteSucursal(@PathVariable Long SucursalId, RedirectAttributes redirectAttrs){
         sucursalRepository.deleteById(SucursalId);
         redirectAttrs.addFlashAttribute("mensaje", "Sucursal eliminada exitosamente");
         return new ModelAndView("redirect:/sucursal/");
     }
-
-
-
-
 
 }
