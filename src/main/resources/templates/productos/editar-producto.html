@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
+        </th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <header th:insert="fragments/template.html :: header"> </header>
+
+    <div class="row">
+        <div class="col-12">
+            <form th:action="@{/productos/editar/{id}(id=${producto.id})}" method="post" th:object="${producto}">
+                <input type="hidden" id="id" name="id" th:value="${producto.id}">
+                <div class="form-group">
+                    <label for="ID">Productos</label>
+                    <input class="form-control" id="nombre" name="nombre" placeholder="Nombre del producto"
+                           type="text" th:value="${producto.nombre}"/>
+                </div>
+                <div class="form-row">
+                    <label for="precio">Precio</label>
+                    <input class="form-control" id="precio" name="precio" placeholder="Precio del producto"
+                           type="text" th:value="${producto.precio}"/>
+                </div>
+
+                <div class="form-group">
+                    <a th:href="@{/productos/}" class="btn btn-warning">Volver</a>
+                    <input class="btn btn-primary" type="submit" value="Guardar">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer th:replace="fragments/template.html :: footer"></footer>
+</div>
+</body>
+</html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
