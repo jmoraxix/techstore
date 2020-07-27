@@ -5,18 +5,17 @@ import lombok.Data;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
-
 @Data
 @Entity
 @Validated
-@Table(name="tipo_pago")
-public class TipoPago {
+@Table(name="producto")
+public class Producto {
+
     @Id
-    @GeneratedValue
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     @NotNull
     private String nombre;
-
-    private String descripcion;
+    private String precio;
 }
