@@ -32,6 +32,7 @@ public class TipoPagoController {
     @GetMapping("/crear")
     public ModelAndView crearTipoPago(ModelMap model){
         model.addAttribute("tipoPago", new TipoPago());
+        model.addAttribute("modo", "crear");
         return new ModelAndView("tipopago/editar-tipo-pago", model);
     }
 
@@ -53,6 +54,7 @@ public class TipoPagoController {
     public ModelAndView editarTipoPago(@PathVariable Long tipoPagoId, ModelMap model){
         Optional<TipoPago> tipoPago = tipoPagoRepository.findById(tipoPagoId);
         model.addAttribute("tipoPago", tipoPago.get());
+        model.addAttribute("modo", "editar");
         return new ModelAndView("tipopago/editar-tipo-pago", model);
     }
 
@@ -69,5 +71,4 @@ public class TipoPagoController {
         redirectAttrs.addFlashAttribute("mensaje", "Tipo de Pago eliminado exitosamente");
         return new ModelAndView("redirect:/tipopago/");
     }
-
 }

@@ -32,7 +32,7 @@
                     <!--Table body-->
                     <tbody>
                         <tr th:if="${listaTipoPago.empty}">
-                            <td colspan="6">No hay roles</td>
+                            <td colspan="6">No hay Tipos de Pago</td>
                         </tr>
                         <tr th:each="tipopagoTmp : ${listaTipoPago}">
                             <td scope="row" th:text="${tipopagoTmp.id}" />

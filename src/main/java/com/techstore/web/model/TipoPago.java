@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class TipoPago {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
     @NotNull
     private String nombre;
