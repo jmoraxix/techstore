@@ -12,6 +12,16 @@
         <div class="col-12">
             <form action="#" th:object="${usuario}">
                 <div class="form-group">
+                    <div class="row">
+                        <div class="col-8">
+                            <label>Usuario</label>
+                        </div>
+                        <div class="col">
+                            <a th:href="@{/usuarios/editar/{id}(id=${nombreUsuario})}" class="btn btn-primary">Editar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
                     <div class="col-8">
                         <label th:for="nombreUsuario">Usuario</label>
                         <input type="text" th:field="*{nombreUsuario}" placeholder="Usuario" readonly
@@ -77,7 +87,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <a th:href="@{/usuarios/}" class="btn btn-warning">Volver</a>
+                    <a th:href="@{{url}(url=${urlAtras})}" class="btn btn-warning">Volver</a>
                 </div>
             </form>
         </div>

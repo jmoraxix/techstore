@@ -33,10 +33,11 @@ public class UsuarioController {
     }
     
     @GetMapping("/crear")
-    public ModelAndView crearUsuario(ModelMap model){
+    public ModelAndView crearUsuario(ModelMap model, @RequestHeader("referer") String referer){
         model.addAttribute("usuario", new Usuario());
         model.addAttribute("listaRoles", rolUsuarioRepository.findAll());
         model.addAttribute("modo", "crear");
+        model.addAttribute("urlAtras", referer);
         return new ModelAndView("usuarios/editar-usuario", model);
     }
 
@@ -48,18 +49,21 @@ public class UsuarioController {
     }
 
     @GetMapping("/{nombreUsuario}")
-    public ModelAndView mostrarUsuario(@PathVariable String nombreUsuario, ModelMap model){
+    public ModelAndView mostrarUsuario(@PathVariable String nombreUsuario, ModelMap model, @RequestHeader("referer") String referer){
         Usuario usuario = usuarioRepository.findByNombreUsuario(nombreUsuario);
         model.addAttribute("usuario", usuario);
+        // TODO Arreglar logica del boton de atras
+        model.addAttribute("urlAtras", referer);
         return new ModelAndView("usuarios/ver-usuario", model);
     }
 
     @GetMapping("/editar/{nombreUsuario}")
-    public ModelAndView editarUsuario(@PathVariable String nombreUsuario, ModelMap model){
+    public ModelAndView editarUsuario(@PathVariable String nombreUsuario, ModelMap model, @RequestHeader("referer") String referer){
         Usuario usuario = usuarioRepository.findByNombreUsuario(nombreUsuario);
         model.addAttribute("usuario", usuario);
         model.addAttribute("listaRoles", rolUsuarioRepository.findAll());
         model.addAttribute("modo", "editar");
+        model.addAttribute("urlAtras", referer);
         return new ModelAndView("usuarios/editar-usuario", model);
     }
 
