@@ -31,12 +31,12 @@ public class ProductoController {
         model.addAttribute("listaProductos", listaProductos);
         return new ModelAndView("productos/listar-productos", model);
     }
+
     @GetMapping("/crear")
     public ModelAndView crearProducto(ModelMap model) {
         model.addAttribute("producto", new Producto());
         return new ModelAndView("productos/editar-producto", model);
     }
-
 
     @PostMapping(value = "/crear")
     public ModelAndView guardarProducto(@Valid @ModelAttribute("producto") Producto producto, BindingResult result, RedirectAttributes redirectAttrs) {
@@ -45,7 +45,6 @@ public class ProductoController {
         return new ModelAndView("redirect:/productos/");
     }
 
-
     @GetMapping("/{productoId}")
     public ModelAndView mostrarProducto(@PathVariable Long productoId, ModelMap model) {
         Optional<Producto> producto = productoRepository.findById(productoId);
@@ -53,14 +52,12 @@ public class ProductoController {
         return new ModelAndView("productos/ver-producto", model);
     }
 
-
     @GetMapping("/editar/{productoId}")
     public ModelAndView editarProducto(@PathVariable Long productoId, ModelMap model) {
         Optional<Producto> producto = productoRepository.findById(productoId);
         model.addAttribute("producto", producto.get());
         return new ModelAndView("productos/editar-producto", model);
     }
-
 
     @PostMapping("/editar/{productoId}")
     public ModelAndView updateProducto(@Valid @ModelAttribute("producto") Producto producto, BindingResult result, RedirectAttributes redirectAttrs) {

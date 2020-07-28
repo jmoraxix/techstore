@@ -17,5 +17,7 @@ public class Producto {
 
     @NotNull
     private String nombre;
-    private String precio;
+
+    @NotNull
+    private Double precio;
 }
