@@ -37,7 +37,7 @@ public class TipoPagoController {
     }
 
     @PostMapping(value = "/crear")
-    public ModelAndView guardarTipoPago(@Valid @ModelAttribute("tipoPago") TipoPago tipoPago, BindingResult result, RedirectAttributes redirectAttrs) {
+    public ModelAndView guardarNuevoTipoPago(@Valid @ModelAttribute("tipoPago") TipoPago tipoPago, BindingResult result, RedirectAttributes redirectAttrs) {
         tipoPagoRepository.save(tipoPago);
         redirectAttrs.addFlashAttribute("mensaje", "Nuevo Tipo de Pago creado");
         return new ModelAndView("redirect:/tipopago/");
@@ -59,14 +59,14 @@ public class TipoPagoController {
     }
 
     @PostMapping(value = "/editar/{tipoPagoId}")
-    public ModelAndView updateTipoPago(@Valid @ModelAttribute("tipoPago") TipoPago tipoPago, BindingResult result, RedirectAttributes redirectAttrs) {
+    public ModelAndView guardarEditarTipoPago(@Valid @ModelAttribute("tipoPago") TipoPago tipoPago, BindingResult result, RedirectAttributes redirectAttrs) {
         tipoPagoRepository.save(tipoPago);
         redirectAttrs.addFlashAttribute("mensaje", "Tipo de Pago actualizado exitosamente");
         return new ModelAndView("redirect:/tipopago/");
     }
 
     @GetMapping("/eliminar/{tipoPagoId}")
-    public ModelAndView deleteTipoPago(@PathVariable Long tipoPagoId, RedirectAttributes redirectAttrs){
+    public ModelAndView eliminarTipoPago(@PathVariable Long tipoPagoId, RedirectAttributes redirectAttrs){
         tipoPagoRepository.deleteById(tipoPagoId);
         redirectAttrs.addFlashAttribute("mensaje", "Tipo de Pago eliminado exitosamente");
         return new ModelAndView("redirect:/tipopago/");
