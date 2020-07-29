@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>editar-imagen</title>
+</head>
+
+<body>
+    <div class="container">
+        <header th:insert="fragments/template.html :: header"> </header>
+
+        <div class="row">
+            <div class="col-12">
+                <form th:action=@{/imagenes/editar/{id}(id=${imagen.imagenId})}" method="post" th:object="${imagen}">
+                
+                
+                
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

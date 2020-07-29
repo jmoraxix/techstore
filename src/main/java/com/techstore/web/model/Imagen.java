@@ -14,13 +14,15 @@ import java.sql.Blob;
 public class Imagen {
 
     @Id
-    private int imagen_id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique=true)
+    private Long imagenId;
 
     @NotNull
     private Blob imagen;
 
     @NotNull
-    private String imagen_nombre;
+    private String imagenNombre;
 
     @NotNull
     private String ubicacion;
