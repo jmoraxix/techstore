@@ -16,10 +16,34 @@
                        type="text" th:value="${producto.nombre}"/>
             </div>
 
-            div class="form-row">
+            <div class="form-group">
+                <label>Tipo producto</label>
+                <input class="form-control" readonly
+                       type="text" th:field="${producto.tipoproducto.nombre}"/>
+            </div>
+
+            <div class="form-row">
             <label for="precio">Precio</label>
             <input class="form-control" id="precio" name="precio" placeholder="Precio del producto" disabled
                    type="text" th:value="${producto.precio}"/>
+
+                <div class="form-group">
+                    <label>Marca</label>
+                    <input class="form-control" readonly
+                           type="text" th:field="${producto.marca.nombre}"/>
+                </div>
+
+                <div class="form-row">
+                    <label for="modelo">Modelo</label>
+                    <input class="form-control" id="modelo" name="modelo" placeholder="Modelo del producto" disabled
+                           type="text" th:value="${producto.modelo}"/>
+
+                    <div class="form-row">
+                        <label for="descripcion">Descripcion</label>
+                        <input class="form-control" id="descripcion" name="descripcion" placeholder="Descripcion del producto" disabled
+                               type="text" th:value="${producto.descripcion}"/>
+
+
             <div class="form-group">
                     <a th:href="@{/productos/}" class="btn btn-warning">Volver</a>
                 </div>

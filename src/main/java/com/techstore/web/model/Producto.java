@@ -20,4 +20,19 @@ public class Producto {
 
     @NotNull
     private Double precio;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Marca marca;
+
+    @NotNull
+    private String modelo;
+
+    @NotNull
+    private String descripcion;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER)
+    private TipoProducto tipoProducto;
 }
+
