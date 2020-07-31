@@ -25,48 +25,51 @@ public class ImagenController {
     @GetMapping("/")
     public ModelAndView listarImagenes(ModelMap model) {
         List<Imagen> listaImagenes = imagenRepository.findAll();
-        model.addAttribute("listaImaneges", listaImagenes);
-        return new ModelAndView("imagenes/listar-imagenes", model);
+        model.addAttribute("listaImagenes", listaImagenes);
+        return new ModelAndView("imagenes/listar-imagen", model);
     }
 
     @GetMapping("/crear")
-    public ModelAndView crearImagen(ModelMap model) {
+    public ModelAndView crearImagen(ModelMap model, @RequestHeader("referer") String referer) {
         model.addAttribute("imagen", new Imagen());
-        return new ModelAndView("imagenes/editar-producto", model);
+        model.addAttribute("urlAtras", referer);
+        return new ModelAndView("imagenes/editar-imagen", model);
     }
 
     @PostMapping(value = "/crear")
-    public ModelAndView guardarImagen(@Valid @ModelAttribute("imagen") Imagen imagen, BindingResult result, RedirectAttributes redirectAttributes) {
+    public ModelAndView guardarImagen(@Valid @ModelAttribute("imagen") Imagen imagen, BindingResult result, RedirectAttributes redirectAttrs) {
         imagenRepository.save(imagen);
-        redirectAttributes.addFlashAttribute("mensaje", "Nueva imagen creada");
+        redirectAttrs.addFlashAttribute("mensaje", "Nueva imagen creada");
         return new ModelAndView("redirect:/imagenes/");
     }
 
     @GetMapping("/{imagenId}")
-    public ModelAndView mostrarImagen(@PathVariable long imagenId, ModelMap model) {
+    public ModelAndView mostrarImagen(@PathVariable long imagenId, ModelMap model, @RequestHeader("referer") String referer) {
         Optional<Imagen> imagen = imagenRepository.findById(imagenId);
         model.addAttribute("imagen", imagen.get());
+        model.addAttribute("urlAtras", referer);
         return new ModelAndView("imagenes/ver-imagen", model);
     }
 
-    @PostMapping("/editar/{imagenId}")
-    public ModelAndView editarImagen(@PathVariable Long imagenId, ModelMap model) {
+    @GetMapping("/editar/{imagenId}")
+    public ModelAndView editarImagen(@PathVariable Long imagenId, ModelMap model, @RequestHeader("referer") String referer) {
         Optional<Imagen> imagen = imagenRepository.findById(imagenId);
         model.addAttribute("imagen", imagen.get());
+        model.addAttribute("urlAtras", referer);
         return new ModelAndView("imagenes/editar-imagen", model);
     }
 
     @PostMapping("/editar/{imagenId}")
-    public ModelAndView updateImagen(@Valid @ModelAttribute("imagen") Imagen imagen, BindingResult result, RedirectAttributes redirectAttributes) {
+    public ModelAndView actualizarImagen(@Valid @ModelAttribute("imagen") Imagen imagen, BindingResult result, RedirectAttributes redirectAttrs) {
         imagenRepository.save(imagen);
-        redirectAttributes.addFlashAttribute("mensaje", "Imagen actualizada exitosamente");
+        redirectAttrs.addFlashAttribute("mensaje", "Imagen actualizada exitosamente");
         return new ModelAndView("redirect:/imagenes/");
     }
 
     @GetMapping("/eliminar/{imagenId}")
-    public ModelAndView deleteImagen(@PathVariable Long imagenId, RedirectAttributes redirectAttributes){
+    public ModelAndView eliminarImagen(@PathVariable Long imagenId, RedirectAttributes redirectAttrs){
         imagenRepository.deleteById(imagenId);
-        redirectAttributes.addFlashAttribute("mensaje","Imagen eliminada exitosamente");
+        redirectAttrs.addFlashAttribute("mensaje","Imagen eliminada exitosamente");
         return new ModelAndView("redirect:/imagenes/");
     }
 
