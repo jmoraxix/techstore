@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
+    </th:block> /*/-->
+
+</head>
+<body>
+<div class="container">
+    <header th:insert="fragments/template.html :: header"></header>
+    <div class="sidenav">
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+    </div>
+    <div>
+        <ul class="list-group">
+            <li class="list-group-item active">Menu Categorias</li>
+            <li class="list-group-item"><a href="/">Categoria1</a></li>
+            <li class="list-group-item"><a href=""></a></li>
+            <li class="list-group-item"><a href=""></a></li>
+            <li class="list-group-item"><a href=""></a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
