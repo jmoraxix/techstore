@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
+        </th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <header th:insert="fragments/template.html :: header"> </header>
+
+    <div class="row">
+        <div class="col-12">
+            <form th:action="@{/tipoproducto/{modo}/{id}(modo=${modo},id=${tipoProducto.id})}" method="post" th:object="${tipoProducto}">
+                <label>Tipo de Producto</label>
+                <input type="hidden" th:field="*{id}">
+                <div class="form-group">
+                    <input type="text" th:field="*{nombre}" placeholder="Nombre"
+                           class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" th:field="*{categoria.id}">
+                        <option th:each="categoria : ${listaCategorias}"
+                                th:value="${categoria.id}"
+                                th:text="${categoria.nombre}">Admin</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <a th:href="@{/tipoproducto/}" class="btn btn-warning">Volver</a>
+                    <input class="btn btn-primary" type="submit" value="Guardar">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer th:replace="fragments/template.html :: footer"></footer>
+</div>
+</body>
+</html>

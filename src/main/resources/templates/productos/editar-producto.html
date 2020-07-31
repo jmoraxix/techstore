@@ -6,22 +6,53 @@
 </head>
 <body>
 <div class="container">
-    <header th:insert="fragments/template.html :: header"> </header>
+    <header th:insert="fragments/template.html :: header"></header>
 
     <div class="row">
         <div class="col-12">
             <form th:action="@{/productos/editar/{id}(id=${producto.id})}" method="post" th:object="${producto}">
                 <input type="hidden" id="id" name="id" th:value="${producto.id}">
+                <label for="ID">Productos</label>
                 <div class="form-group">
-                    <label for="ID">Productos</label>
-                    <input class="form-control" id="nombre" name="nombre" placeholder="Nombre del producto"
-                           type="text" th:value="${producto.nombre}"/>
+
+
+                    <input class="form-control" placeholder="Nombre del producto"
+                           type="text" th:field="*{nombre}"/>
                 </div>
-                <div class="form-row">
-                    <label for="precio">Precio</label>
-                    <input class="form-control" id="precio" name="precio" placeholder="Precio del producto"
-                           type="text" th:value="${producto.precio}"/>
+                <div class="form-group">
+                    <select class="form-control" th:field="*{tipoProducto.id}">
+                        <option th:each="tipoProducto : ${listaTipoProducto}"
+                                th:value="${tipoProducto.id}"
+                                th:text="${tipoProducto.nombre}">Admin
+                        </option>
+                    </select>
                 </div>
+                <div class="form-group">
+                    <input class="form-control" placeholder="Precio del producto"
+                           type="number" th:field="*{precio}"/>
+                </div>
+
+                <div class="form-group">
+                    <select class="form-control" th:field="*{marca.id}">
+                        <option th:each="marca : ${listaMarcas}"
+                                th:value="${marca.id}"
+                                th:text="${marca.nombre}">Admin
+                        </option>
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input class="form-control" placeholder="Modelo"
+                           type="text" th:field="*{modelo}"/>
+                </div>
+
+
+                <div class="form-group">
+                    <input class="form-control" placeholder="Descripcion"
+                           type="text" th:field="*{descripcion}"/>
+                </div>
+
 
                 <div class="form-group">
                     <a th:href="@{/productos/}" class="btn btn-warning">Volver</a>
@@ -34,7 +65,8 @@
     <footer th:replace="fragments/template.html :: footer"></footer>
 </div>
 </body>
-</html><html lang="en">
+</html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title></title>

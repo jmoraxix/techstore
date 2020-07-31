@@ -1,9 +1,11 @@
 package com.techstore.web.controller;
 
 
+import com.techstore.web.dao.MarcaRepository;
 import com.techstore.web.dao.ProductoRepository;
 
 
+import com.techstore.web.dao.TipoProductoRepository;
 import com.techstore.web.model.Producto;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,13 @@ public class ProductoController {
     @Autowired
     private ProductoRepository productoRepository;
 
+    @Autowired
+    private TipoProductoRepository tipoProductoRepository;
+
+    @Autowired
+    private MarcaRepository marcaRepository;
+
+
     @GetMapping("/")
     public ModelAndView listarProductos(ModelMap model) {
         List<Producto> listaProductos = productoRepository.findAll();
@@ -35,6 +44,8 @@ public class ProductoController {
     @GetMapping("/crear")
     public ModelAndView crearProducto(ModelMap model) {
         model.addAttribute("producto", new Producto());
+        model.addAttribute("listaTipoProducto", tipoProductoRepository.findAll());
+        model.addAttribute("listaMarcas", marcaRepository.findAll());
         return new ModelAndView("productos/editar-producto", model);
     }
 
@@ -56,6 +67,8 @@ public class ProductoController {
     public ModelAndView editarProducto(@PathVariable Long productoId, ModelMap model) {
         Optional<Producto> producto = productoRepository.findById(productoId);
         model.addAttribute("producto", producto.get());
+        model.addAttribute("listaTipoProducto", tipoProductoRepository.findAll());
+        model.addAttribute("listaMarcas", marcaRepository.findAll());
         return new ModelAndView("productos/editar-producto", model);
     }
 
