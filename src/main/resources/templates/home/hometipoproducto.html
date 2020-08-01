@@ -17,13 +17,13 @@
         <td width="20%">
             <table>
             <div class="list-group">
-                <tr class="list-group-active">
-                    <td class="list-group-item active" th:text="Categorias"></td>
+                <tr class="list-group-item active" th:object="${categoria}" >
+                    <td th:text="'Tipos de Productos en '+${categoria.nombre}" />
                 </tr>
-                <tr th:each="listaCategoria:${categorias}">
-                        <td>
-                            <a class="list-group-item"th:text="${listaCategoria.nombre}" th:href="@{/home/{id}(id=${listaCategoria.Id})}"/>
-                        </td>
+                <tr th:each="lista : ${tipoproducto}" >
+                    <td>
+                        <a class="list-group-item" th:text="${lista.nombre}" th:href="@{/home/categoria/{lista}(lista=${lista.id})}"/>
+                    </td>
                 </tr>
             </div>
             </table>
@@ -31,10 +31,13 @@
         <td width="80%">
             <div class="container">
                 <table width="100%" class="table-bordered">
-                    <tr th:if="${categorias.empty}">
-                        <h2 class="center">No hay Categorias Disponibles</h2>
+                    <tr>
+                        <td>A</td>
+                        <td>A</td>
+                        <td>A</td>
+                        <td>A</td>
+                        <td>A</td>
                     </tr>
-
                 </table>
             </div>
         </td>
