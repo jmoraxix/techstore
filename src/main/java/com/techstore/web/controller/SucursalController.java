@@ -46,14 +46,14 @@ public class SucursalController {
 
     @GetMapping("/editar/{codigo}")
     public ModelAndView editarSucursal(@PathVariable Long codigo, ModelMap model){
-        Sucursal sucursal = sucursalRepository.findByCodigo(codigo);
+        Optional<Sucursal> sucursal = sucursalRepository.findById(codigo);
         //Optional<Sucursal> sucursales=sucursalRepository.findById(codigo);
-        model.addAttribute("sucursal", sucursal);
+        model.addAttribute("sucursal", sucursal.get());
         model.addAttribute("modo", "editar");
         return new ModelAndView("sucursal/editar-sucursales", model);
     }
 
-    @PostMapping(value = "/editar/{SucursalId}")
+    @PostMapping(value = "/editar/{codigo}")
     public ModelAndView guardarSucursal(@Valid @ModelAttribute("sucursal") Sucursal sucursales, BindingResult result, RedirectAttributes redirectAttrs){
         sucursalRepository.save(sucursales);
         redirectAttrs.addFlashAttribute("mensaje", "Sucursal actualizada exitosamente");

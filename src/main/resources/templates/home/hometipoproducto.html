@@ -25,6 +25,11 @@
                         <a class="list-group-item" th:text="${lista.nombre}" th:href="@{/home/categoria/{lista}(lista=${lista.id})}"/>
                     </td>
                 </tr>
+                <tr >
+                    <td>
+                        <a class="list-group-item" th:text="Volver" th:href="@{/home/}"/>
+                    </td>
+                </tr>
             </div>
             </table>
         </td>

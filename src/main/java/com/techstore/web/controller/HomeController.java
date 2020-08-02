@@ -44,6 +44,8 @@ public class HomeController {
     public ModelAndView mostrarproducto(@PathVariable Long lista,ModelMap model){
         List<Producto> productos= productoRepository.findAllByTipoProducto_Id(lista);
         Optional<TipoProducto>tipo=tipoProductoRepository.findById(lista);
+        //Categoria categoria=categoriaRepository.findById(tipoProductoRepository.findByCategoria_Id(lista));
+        //model.addAttribute("categoria",categoria);
         model.addAttribute("tipo",tipo.get());
         model.addAttribute("productos",productos);
         return new ModelAndView("home/homeproductos",model);

@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 @Repository
 public interface SucursalRepository  extends JpaRepository<Sucursal,Long>{
 
-    Sucursal findByCodigo(Long codigo);
+    //Sucursal findById(Long Id);
 
 
 }
