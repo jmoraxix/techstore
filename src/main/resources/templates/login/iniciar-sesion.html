@@ -1,13 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
+    </th:block> /*/-->
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+
     <title>login</title>
 </head>
 <body>
 <div class="container">
-    <header th:insert="fragments/template.html :: header"> </header>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
 
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <img alt="Techstore Icon" id="icon" src="http://danielzawadzki.com/codepen/01/icon.svg"/>
+            </div>
+
+            <!-- Login Form -->
+            <form method="post" th:action="@{/login}">
+                <div class="alert alert-error" th:if="${param.error}">
+                    Invalid username and password.
+                </div>
+                <div class="alert alert-success" th:if="${param.logout}">
+                    You have been logged out.
+                </div>
+                <input class="fadeIn second" id="login" name="nombreUsuario" placeholder="Usuario" type="text">
+                <input class="fadeIn third" id="password" name="contrasena" placeholder="Contrase&ntilde;a" type="text">
+                <input class="fadeIn fourth" type="submit" value="Iniciar sesi&oacute;n">
+            </form>
+
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a class="underlineHover" href="#">¿Olvid&oacute; su contrase&ntilde;a?</a>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="underlineHover" href="#">Crear nuevo usuario</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 
 </body>
