@@ -13,8 +13,12 @@
             <form action="#" th:object="${sucursal}">
                 <label>Sucursal</label>
                 <div class="form-group">
-                    <input class="form-control" id="codigo" name="codigo" placeholder="Codigo" readonly
-                           type="text" th:value="${sucursal.codigo}"/>
+                    <input class="form-control" id="id" name="Codigo" placeholder="Codigo" readonly
+                           type="text" th:value="${sucursal.id}"/>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" id="nombre" name="Nombre" placeholder="Provincia" readonly
+                           type="text" th:value="${sucursal.nombre}"/>
                 </div>
                 <div class="form-group">
                     <input class="form-control" id="provincia" name="provincia" placeholder="Provincia" readonly

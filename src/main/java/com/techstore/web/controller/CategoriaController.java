@@ -2,7 +2,6 @@ package com.techstore.web.controller;
 
 import com.techstore.web.dao.CategoriaRepository;
 import com.techstore.web.model.Categoria;
-import com.techstore.web.model.Marca;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;

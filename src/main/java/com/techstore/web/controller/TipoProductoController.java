@@ -3,6 +3,7 @@ package com.techstore.web.controller;
 import com.techstore.web.dao.CategoriaRepository;
 import com.techstore.web.dao.TipoProductoRepository;
 import com.techstore.web.model.TipoProducto;
+import com.techstore.web.service.CategoriaService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -19,24 +20,24 @@ import java.util.Optional;
 @Log4j2
 @RequestMapping("/tipoproducto")
 public class TipoProductoController {
-
     @Autowired
     private TipoProductoRepository tipoProductoRepository;
-
     @Autowired
     private CategoriaRepository categoriaRepository;
+    @Autowired
+    private CategoriaService categoriaService;
 
     @GetMapping("/")
-    public ModelAndView listarTipoProducto(ModelMap model){
+    public ModelAndView listarTipoProducto(ModelMap model) {
         List<TipoProducto> listaTipoProducto = tipoProductoRepository.findAll();
         model.addAttribute("listaTipoProducto", listaTipoProducto);
         return new ModelAndView("tipoproducto/listar-tipo-producto", model);
     }
 
     @GetMapping("/crear")
-    public ModelAndView crearTipoProducto(ModelMap model){
+    public ModelAndView crearTipoProducto(ModelMap model) {
         model.addAttribute("tipoProducto", new TipoProducto());
-        model.addAttribute("listaCategorias", categoriaRepository.findAll());
+        model.addAttribute("listaCategorias", categoriaService.findAllOrdered());
         model.addAttribute("modo", "crear");
         return new ModelAndView("tipoproducto/editar-tipo-producto" ,model);
     }

@@ -13,16 +13,17 @@ import javax.persistence.*;
 public class Inventario {
 
     @Id
+    @GeneratedValue
     private Long id;
 
-    @MapsId
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="sucursal_id", referencedColumnName="id")
     private Sucursal sucursal;
 
-    @MapsId
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="producto_id", referencedColumnName="id")
     private Producto producto;
 
     @NotNull

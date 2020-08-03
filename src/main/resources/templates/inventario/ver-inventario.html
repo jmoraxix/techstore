@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
+        </th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <header th:insert="fragments/template.html :: header"> </header>
+
+    <div class="row">
+        <div class="col-12">
+            <form action="#" th:object="${inventario}">
+                <label>Inventarios</label>
+                <div class="form-group">
+                    <label>Nombre del Producto</label>
+                    <input class="form-control" readonly
+                           type="text" th:field="${inventario.producto.nombre}"/>
+                </div>
+                <label>Cantidad de Producto</label>
+                <div class="form-group">
+                    <input class="form-control"  readonly
+                           type="text" th:field="${inventario.cantidad}"/>
+                </div>
+                <label>Sucursal</label>
+                <div class="form-group">
+                    <input class="form-control" readonly
+                           type="text" th:field="${inventario.sucursal.nombre}"/>
+                </div>
+                <div class="form-group">
+                    <a th:href="@{/inventario/}" class="btn btn-warning">Volver</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer th:replace="fragments/template.html :: footer"></footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
+    </th:block> /*/-->
+</head>
+<body>
+<table width="100%">
+    <tr>
+        <td colspan="2" width="100% " class="center" align="center">
+            <div class="container">
+                <header th:insert="fragments/template.html :: header" class="center"></header>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td width="20%">
+            <table>
+            <div class="list-group">
+                <tr class="list-group-active">
+                    <td class="list-group-item active" th:text="Categorias"></td>
+                </tr>
+                <tr th:each="listaCategoria:${categorias}">
+                        <td>
+                            <a class="list-group-item"th:text="${listaCategoria.nombre}" th:href="@{/home/{id}(id=${listaCategoria.Id})}"/>
+                        </td>
+                </tr>
+
+            </div>
+            </table>
+        </td>
+        <td width="80%">
+            <div class="container">
+                <table width="100%" class="table-bordered">
+                    <tr th:if="${categorias.empty}">
+                        <h2 class="center">No hay Categorias Disponibles</h2>
+                    </tr>
+
+                </table>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <div>
+                <footer th:replace="fragments/template.html :: footer"></footer>
+            </div>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

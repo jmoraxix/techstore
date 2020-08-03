@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
+        </th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <header th:insert="fragments/template.html :: header"> </header>
+
+    <div class="row">
+        <div class="col-12">
+            <form th:action="@{/inventario/{modo}/{id}(modo=${modo},id=${inventario.id})}" method="post" th:object="${inventario}">
+                <label>Lista de Sucursales</label>
+                <div class="form-group">
+                    <select class="form-control" th:field="*{sucursal.id}">
+                        <option th:each="sucursal : ${listaSucursales}"
+                                th:value="${sucursal.id}"
+                                th:text="${sucursal.nombre}">Lista Sucursales</option>
+                    </select>
+                </div>
+                <label>Lista de Productos</label>
+                <div class="form-group">
+                    <select class="form-control" th:field="*{producto.id}">
+                        <option th:each="producto : ${listaProductos}"
+                                th:value="${producto.id}"
+                                th:text="${producto.nombre}">Lista Productos</option>
+                    </select>
+                </div>
+                <label>Cantidad de Producto</label>
+                <input type="hidden" th:field="*{id}">
+                <div class="form-group">
+                    <input type="text" th:field="*{cantidad}" placeholder="Cantidad"
+                           class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <a th:href="@{/inventario/}" class="btn btn-warning">Volver</a>
+                    <input class="btn btn-primary" type="submit" value="Guardar">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer th:replace="fragments/template.html :: footer"></footer>
+</div>
+</body>
+</html>
