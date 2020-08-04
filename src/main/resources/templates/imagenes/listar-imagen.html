@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
+        </th:block> /*/-->
+    <title>Listar Imagen</title>
+</head>
+
+<body>
+    <div class="container">
+        <header th:insert="fragments/template.html :: header"></header>
+        <div class="row">
+            <div class="col-md-8">
+                <h1>Imagenes</h1>
+            </div>
+            <div class="col-md-8">
+                <div class="float-rigth"><a th:href="@{/imagenes/crear}" class="btn btn-success">Crear</a></div>
+                <h1></h1>
+            </div>
+        </div>
+        <h1></h1>
+        <div class="row">
+            <div class="col-12">
+                <table id="tablaUsuarios" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Nombre</th>
+                            <th>Imagen</th>
+                            <th>Ubicacion</th>
+                            <th>Ver</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:if="${listaImagenes.empty}">
+                            <td colspan="4">No hay imagenes disponibles.</td>
+                        </tr>
+                        <tr th:each="imagenTmp : ${listaImagenes}">
+                            <td scope="row" th:text="${imagenTmp.imagenId}" />
+                            <td scope="row" th:text="${imagenTmp.imagenNombre}" />
+                            <td th:src="${imagenTmp.imagen}" />
+                            <td th:text="${imagenTmp.Ubicacion}" />
+                            <td><a class="btn btn-info" th:href="@{/imagenes/{id}(id=${imagenTmp.imagenId})}">Ver</a>
+                            </td>
+                            <td><a class="btn btn-secondary"
+                                    th:href="@{/imagenes/editar/{id}(id=${imagenTmp.imagenId})}">Editar</a>
+                            </td>
+                            <td><a class="btn btn-danger"
+                                    th:href="@{/imagenes/eliminar/{id}(id=${imagenTmp.imagenId})}">Eliminar</a>
+                            </td>
+                        </tr>
+                </table>
+            </div>
+        </div>
+        <div th:replace="fragments/template.html :: notificaciones"></div>
+        <div th:replace="fragments/template.html :: footer"></div>
+    </div>
+</body>
+
+</html>

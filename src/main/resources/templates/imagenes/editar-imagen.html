@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
+        </th:block> /*/-->
+    <title>editar-imagen</title>
+</head>
+
+<body>
+    <div class="container">
+        <header th:insert="fragments/template.html :: header"> </header>
+
+        <div class="row">
+            <div class="col-12">
+                <form th:action="@{/imagenes/editar/{id}(id=${imagen.imagenId})}" method="post" th:object="${imagen}">
+                    <label>Imagen</label>
+                <input type="hidden" id="imagenId" name="imagenId" th:value="${imagen.imagenId}">
+                    <div class="form-group">
+                        <div class="col-8">
+                            <input class="form-control" placeholder="Nombre de la imagen"
+                                   type="text" th:field="*{imagenNombre}"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-8">
+                            <textarea th:field="*{ubicacion}" placeholder="Direcci&oacute;n de la imagen" cols="40" rows="2"
+                                class="form-control"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <a th:href="@{/imagenes/}" class="btn btn-warning">Volver</a>
+                        <input class="btn btn-primary" type="submit" value="Guardar">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <footer th:replace="fragments/template.html :: footer"></footer>
+    </div>
+</body>
+
+</html>
