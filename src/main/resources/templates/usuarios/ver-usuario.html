@@ -31,8 +31,11 @@
                 <div class="form-group">
                     <div class="col-8">
                         <label th:for="rolUsuario.nombre">Rol</label>
-                        <input type="text" th:field="*{rolUsuario.nombre}" placeholder="Rol" readonly
-                               class="form-control">
+                        <input class="form-control" placeholder="Rol" readonly type="text">
+                        <div th:each="rol, itemStat : ${rolUsuario}">
+                            <span th:text="*{!itemStat.last ? rolUsuario[__${itemStat.index}__].nombre + ', ' : rolUsuario[__${itemStat.index}__].nombre}"></span>
+                        </div>
+                        </input>
                     </div>
                 </div>
                 <label>Datos</label>
