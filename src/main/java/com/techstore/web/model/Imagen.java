@@ -18,8 +18,6 @@ public class Imagen {
     @Column(unique=true)
     private Long imagenId;
 
-    @NotNull
-    private Blob imagen;
 
     @NotNull
     private String imagenNombre;
