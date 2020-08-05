@@ -27,7 +27,6 @@
                         <tr>
                             <th>Codigo</th>
                             <th>Nombre</th>
-                            <th>Imagen</th>
                             <th>Ubicacion</th>
                             <th>Ver</th>
                             <th>Editar</th>
@@ -41,7 +40,6 @@
                         <tr th:each="imagenTmp : ${listaImagenes}">
                             <td scope="row" th:text="${imagenTmp.imagenId}" />
                             <td scope="row" th:text="${imagenTmp.imagenNombre}" />
-                            <td th:src="${imagenTmp.imagen}" />
                             <td th:text="${imagenTmp.Ubicacion}" />
                             <td><a class="btn btn-info" th:href="@{/imagenes/{id}(id=${imagenTmp.imagenId})}">Ver</a>
                             </td>
