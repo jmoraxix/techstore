@@ -11,10 +11,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
@@ -41,12 +38,12 @@ public class HomeController {
     }
 
     @GetMapping("/categoria/{lista}")
-    public ModelAndView mostrarproducto(@PathVariable Long lista,ModelMap model){
+    public ModelAndView mostrarproducto(@PathVariable Long lista,ModelMap model,@RequestHeader("referer") String referer){
         List<Producto> productos= productoRepository.findAllByTipoProducto_Id(lista);
         Optional<TipoProducto>tipo=tipoProductoRepository.findById(lista);
-        //Categoria categoria=categoriaRepository.findById(tipoProductoRepository.findByCategoria_Id(lista));
-        //model.addAttribute("categoria",categoria);
+        //List<TipoProducto>list=tipoProductoRepository.findAllByCategoriaId();
         model.addAttribute("tipo",tipo.get());
+        model.addAttribute("back",referer);
         model.addAttribute("productos",productos);
         return new ModelAndView("home/homeproductos",model);
     }
