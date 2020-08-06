@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Validated
+@Cacheable
 @Table(name="producto")
 public class Producto {
 

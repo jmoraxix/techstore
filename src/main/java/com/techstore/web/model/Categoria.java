@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -14,8 +15,13 @@ public class Categoria {
     @Id
     @GeneratedValue
     private Long id;
+
     @NotNull
     @Column(unique = true)
     private String nombre;
     private Integer orden;
+
+    @OneToMany
+    @JoinColumn(name = "categoria_id", referencedColumnName = "id")
+    private List<TipoProducto> tipoProductos;
 }

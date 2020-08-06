@@ -3,6 +3,7 @@
 <head>
     <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
     </th:block> /*/-->
+    <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
 <body>
 <div class="container">
@@ -10,19 +11,23 @@
 
     <div class="row">
         <div class="col-3">
-            <ul class="list-group">
-                <li class="list-group-item list-group-item-primary" th:text="Categor&iacute;as"/>
-
-                <li class="list-group-item" th:each="opcionMenu : ${listaMenu}">
-                    <a th:href="@{/home/{categoriaId}(categoriaId=${opcionMenu.Id})}" th:text="${opcionMenu.nombre}"/>
-
-                    <ul class="list-group">
-                        <li class="list-group-item" th:each="opcionSubmenu : ${opcionMenu.tipoProductos}">
-                            <a th:href="@{/home/{categoriaId}/{subCategoriaId}(categoriaId = ${opcionMenu.Id}, subCategoriaId = ${opcionSubmenu.Id})}"
-                               th:text="${opcionSubmenu.nombre}"/>
-                        </li>
-                    </ul>
-                </li>
+            <h5>Categor&iacute;as</h5>
+            <ul class="list-group list-group-flush">
+                <div th:each="opcionMenu : ${listaMenu}">
+                    <li class="list-group-item"
+                            th:classappend="${opcionMenu.id == categoriaSeleccionada && tipoProductoSeleccionado == null} ? list-group-item-primary">
+                        <a th:href="@{/home/{categoriaId}(categoriaId=${opcionMenu.id})}" th:text="${opcionMenu.nombre}"/>
+                    </li>
+                    <div th:if="${!opcionMenu.tipoProductos.empty}" class="sublist">
+                        <ul class="list-group">
+                            <li class="list-group-item" th:each="opcionSubmenu : ${opcionMenu.tipoProductos}"
+                                th:classappend="${opcionSubmenu.id == tipoProductoSeleccionado} ? list-group-item-primary">
+                                <a th:href="@{/home/{categoriaId}/{subCategoriaId}(categoriaId = ${opcionMenu.Id}, subCategoriaId = ${opcionSubmenu.Id})}"
+                                   th:text="${opcionSubmenu.nombre}"/>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </ul>
         </div>
         <div class="col-9">

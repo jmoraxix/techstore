@@ -21,10 +21,13 @@ import java.util.List;
 @Log4j2
 @RequestMapping("/home")
 public class HomeController {
+
     @Autowired
     private TipoProductoRepository tipoProductoRepository;
+
     @Autowired
     private ProductoRepository productoRepository;
+
     @Autowired
     private CategoriaRepository categoriaRepository;
 
@@ -33,7 +36,7 @@ public class HomeController {
         Categoria categoria = categoriaRepository.findById(categoriaId).get();
         List<TipoProducto> listaTipoProductos = tipoProductoRepository.getTipoProductByCategoria(categoria);
 
-        model.addAttribute("categoriaSeleccionada", categoria);
+        model.addAttribute("categoriaSeleccionada", categoria.getId());
         model.addAttribute("listaMenu", categoriaRepository.findAll());
         model.addAttribute("listaProductos", productoRepository.getAllFromListaTipoProductos(listaTipoProductos));
         return new ModelAndView("home/home", model);
@@ -45,8 +48,8 @@ public class HomeController {
         TipoProducto tipoProducto = tipoProductoRepository.findById(tipProductoId).get();
         List<Producto> productos = productoRepository.getAllFromTipoProductos(tipoProducto);
 
-        model.addAttribute("categoriaSeleccionada", categoria);
-        model.addAttribute("tipoProductoSeleccionado", tipoProducto);
+        model.addAttribute("categoriaSeleccionada", categoria.getId());
+        model.addAttribute("tipoProductoSeleccionado", tipoProducto.getId());
         model.addAttribute("listaMenu", categoriaRepository.findAll());
         model.addAttribute("listaProductos", productos);
         return new ModelAndView("home/home", model);
