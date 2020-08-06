@@ -9,7 +9,8 @@ import java.util.List;
 
 @Repository
 public interface ProductoRepository extends JpaRepository<Producto, Long> {
-    @Query("SELECT p FROM Producto p WHERE p.tipoProducto :tipoProducto")
+
+    @Query("SELECT p FROM Producto p WHERE p.tipoProducto = :tipoProducto")
     List<Producto> getAllFromTipoProductos(TipoProducto tipoProducto);
 
     @Query("SELECT p FROM Producto p WHERE p.tipoProducto IN :listaProductos")
