@@ -14,7 +14,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     CustomAuthenticationProvider customAuthProvider;
     String[] resources = new String[]{
-            "/css/**", "/js/**", "/img/**"
+            "/css/**", "/js/**", "/image/**"
     };
 
     @Override
@@ -36,7 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                 .permitAll()
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/home/", true)
                 .failureUrl("/login?error=true")
                 .usernameParameter("nombreUsuario")
                 .passwordParameter("contrasena")
