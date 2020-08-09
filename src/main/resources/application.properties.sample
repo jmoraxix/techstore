@@ -20,3 +20,6 @@ management.endpoint.health.show-details=always
 
 # Logging
 logging.level.root=DEBUG
+
+spring.servlet.multipart.max-file-size=150000KB
+spring.servlet.multipart.max-request-size=150000KB
