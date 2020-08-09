@@ -10,12 +10,12 @@
 
     <div class="row">
         <div class="col-12">
-            <form th:action="@{/categorias/editar/{id}(id=${categoria.id})}" method="post" th:object="${categoria}">
-                <input type="hidden" id="id" name="id" th:value="${categoria.id}">
+            <form th:action="@{/categorias/editar/{modo}{id}(modo=${modo},id=${categoria.id})}" method="post" th:object="${categoria}">
+                <label>Categorias</label>
+                <input type="hidden" th:field="*{id}">
                 <div class="form-group">
-                    <label for="ID">Categorias</label>
-                    <input class="form-control" id="nombre" name="nombre" placeholder="Nombre de la categoria"
-                           type="text" th:value="${categoria.nombre}"/>
+                    <input type="text" th:field="*{nombre}" placeholder="Nombre de la Categoria"
+                           class="form-control"/>
                 </div>
 
                 <div class="form-group">

@@ -32,6 +32,7 @@ public class CategoriaController {
     @GetMapping("/crear")
     public ModelAndView crearCategoria(ModelMap model) {
         model.addAttribute("categoria", new Categoria());
+        model.addAttribute("modo", "crear");
         return new ModelAndView("categorias/editar-categoria", model);
     }
 
@@ -56,6 +57,7 @@ public class CategoriaController {
     public ModelAndView editarCategoria(@PathVariable Long categoriaId, ModelMap model) {
         Optional<Categoria> categoria = categoriaRepository.findById(categoriaId);
         model.addAttribute("categoria", categoria.get());
+        model.addAttribute("modo", "editar");
         return new ModelAndView("categorias/editar-categoria", model);
     }
 
