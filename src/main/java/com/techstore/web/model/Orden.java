@@ -5,7 +5,7 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -23,8 +23,7 @@ public class Orden {
     @NotNull
     private boolean activa = true;
 
-    @OneToMany
-    @JoinColumn(name="orden_id", referencedColumnName="id")
-    private List<ItemOrden> items;
+    @Transient
+    private Set<ItemOrden> items;
 
 }

@@ -15,4 +15,6 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
 
     @Query("SELECT p FROM Producto p WHERE p.tipoProducto IN :listaProductos")
     List<Producto> getAllFromListaTipoProductos(List<TipoProducto> listaProductos);
+
+    Producto findFirstById(Long id);
 }

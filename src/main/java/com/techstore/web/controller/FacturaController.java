@@ -11,7 +11,6 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -37,7 +36,7 @@ public class FacturaController {
     public ModelAndView facturar(ModelMap model){
         // Tomar TODO usuario actual de Spring Security
         Usuario usuario = usuarioRepository.findByNombreUsuario("test");
-        Orden orden = ordenRepository.findFirstByUsuario_NombreUsuarioAndActivaTrue(usuario.getNombreUsuario());
+        Orden orden = ordenRepository.getOrdenActiva(usuario.getNombreUsuario());
         model.addAttribute("orden", orden);
         model.addAttribute("listaTipoPago", tipoPagoRepository.findAll());
         return new ModelAndView("index", model);
