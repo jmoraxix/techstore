@@ -26,6 +26,11 @@ public class LoginController {
     @Autowired
     private RolUsuarioRepository rolUsuarioRepository;
 
+    @GetMapping("/")
+    public ModelAndView guardarNuevoUsuario(RedirectAttributes redirectAttrs) {
+        return new ModelAndView("redirect:/home");
+    }
+
     @GetMapping("/login")
     public ModelAndView mostrarLogin(ModelMap model) {
         return new ModelAndView("login/iniciar-sesion", model);

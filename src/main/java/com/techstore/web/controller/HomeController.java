@@ -31,6 +31,13 @@ public class HomeController {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
+    @GetMapping
+    public ModelAndView cargarHome(ModelMap model) {
+        model.addAttribute("listaMenu", categoriaRepository.findAll());
+        model.addAttribute("listaProductos", productoRepository.findAll());
+        return new ModelAndView("home/home", model);
+    }
+
     @GetMapping("/{categoriaId}")
     public ModelAndView mostrarTipoProducto(@PathVariable Long categoriaId, ModelMap model) {
         Categoria categoria = categoriaRepository.findById(categoriaId).get();
@@ -52,13 +59,6 @@ public class HomeController {
         model.addAttribute("tipoProductoSeleccionado", tipoProducto.getId());
         model.addAttribute("listaMenu", categoriaRepository.findAll());
         model.addAttribute("listaProductos", productos);
-        return new ModelAndView("home/home", model);
-    }
-
-    @GetMapping("/")
-    public ModelAndView mostrarCategorias(ModelMap model) {
-        model.addAttribute("listaMenu", categoriaRepository.findAll());
-        model.addAttribute("listaProductos", productoRepository.findAll());
         return new ModelAndView("home/home", model);
     }
 }
