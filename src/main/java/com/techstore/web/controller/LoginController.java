@@ -1,8 +1,8 @@
 package com.techstore.web.controller;
 
 import com.techstore.web.dao.RolUsuarioRepository;
-import com.techstore.web.dao.UsuarioRepository;
 import com.techstore.web.model.Usuario;
+import com.techstore.web.service.UsuarioService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -21,7 +21,7 @@ import javax.validation.Valid;
 public class LoginController {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UsuarioService usuarioService;
 
     @Autowired
     private RolUsuarioRepository rolUsuarioRepository;
@@ -45,7 +45,7 @@ public class LoginController {
     @PostMapping("/crearusuario")
     public ModelAndView guardarNuevoUsuario(@Valid @ModelAttribute("usuario") Usuario usuario, BindingResult result, RedirectAttributes redirectAttrs) {
         usuario.addRolUsuario(rolUsuarioRepository.findFirstByNombre("Cliente"));
-        usuarioRepository.save(usuario);
+        usuarioService.save(usuario);
         redirectAttrs.addFlashAttribute("mensaje", "Usuario creado exitosamente");
         return new ModelAndView("redirect:/login");
     }
