@@ -21,9 +21,9 @@ public class OrdenController {
 
     @GetMapping
     public ModelAndView listarOrdenes(ModelMap model){
-        Orden orden = ordenService.gerOrden();
+        Orden orden = ordenService.getCurrentOrden();
         model.addAttribute("orden", orden);
-        return new ModelAndView("orden/listar-orden", model);
+        return new ModelAndView("carrito/listar-orden", model);
     }
 
     @GetMapping("/{productoId}")

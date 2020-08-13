@@ -26,4 +26,7 @@ public class ItemOrden {
     @NotNull
     private int cantidad;
 
+    public Double getSubtotal(){
+        return producto.getPrecio() * cantidad;
+    }
 }

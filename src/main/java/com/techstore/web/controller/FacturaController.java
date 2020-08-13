@@ -1,19 +1,23 @@
 package com.techstore.web.controller;
 
-import com.techstore.web.dao.FacturaRepository;
-import com.techstore.web.dao.OrdenRepository;
-import com.techstore.web.dao.TipoPagoRepository;
-import com.techstore.web.dao.UsuarioRepository;
 import com.techstore.web.model.Factura;
-import com.techstore.web.model.Orden;
-import com.techstore.web.model.Usuario;
+import com.techstore.web.service.FacturaService;
+import com.techstore.web.service.OrdenService;
+import com.techstore.web.service.TipoPagoService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.transaction.Transactional;
+import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,33 +25,39 @@ import java.util.List;
 public class FacturaController {
 
     @Autowired
-    UsuarioRepository usuarioRepository;
+    private OrdenService ordenService;
 
     @Autowired
-    OrdenRepository ordenRepository;
+    private TipoPagoService tipoPagoService;
 
     @Autowired
-    TipoPagoRepository tipoPagoRepository;
-
-    @Autowired
-    FacturaRepository facturaRepository;
+    private FacturaService facturaService;
 
     @GetMapping("/facturar")
-    public ModelAndView facturar(ModelMap model){
-        // Tomar TODO usuario actual de Spring Security
-        Usuario usuario = usuarioRepository.findByNombreUsuario("test");
-        Orden orden = ordenRepository.getOrdenActiva(usuario.getNombreUsuario());
-        model.addAttribute("orden", orden);
-        model.addAttribute("listaTipoPago", tipoPagoRepository.findAll());
-        return new ModelAndView("index", model);
+    public ModelAndView prepararFactura(ModelMap model){
+        Factura factura = new Factura();
+        factura.setOrden(ordenService.getCurrentOrden());
+        model.addAttribute("factura", factura);
+        model.addAttribute("listaTipoPago", tipoPagoService.findAll());
+        return new ModelAndView("facturas/facturar", model);
     }
 
-    @GetMapping("/misordenes")
+    @Transactional
+    @PostMapping("/facturar")
+    public ModelAndView facturar(@Valid @ModelAttribute("factura") Factura factura, BindingResult result, RedirectAttributes redirectAttrs){
+        factura.facturar();
+        ordenService.actualizarOrden(factura.getOrden());
+        facturaService.guardarFactura(factura);
+        redirectAttrs.addFlashAttribute("mensaje", "Se ha facturado correctamente.");
+        return new ModelAndView("redirect:/ordenes");
+    }
+
+    @GetMapping("/ordenes")
     public ModelAndView listarHistorialFacturas(ModelMap model){
-        model.addAttribute("titulo", "Mis ordenes");
-        // TODO Tomar usuario actual de Spring Security
-        Usuario usuario = usuarioRepository.findByNombreUsuario("test");
-        List<Factura> listaFacturas = facturaRepository.findByOrdenUsuarioNombreUsuarioOrderByFecha(usuario.getNombreUsuario());
+        List<Factura> listaFacturas = facturaService.getListaFacturas();
+        if(listaFacturas == null){
+            listaFacturas = new ArrayList<Factura>();
+        }
         model.addAttribute("listaFacturas", listaFacturas);
         return new ModelAndView("facturas/listar-facturas", model);
     }

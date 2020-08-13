@@ -15,14 +15,17 @@ public class Factura {
     @Id
     private long id;
 
-    @OneToOne
-    @MapsId
+    @NotNull
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Orden orden;
 
-    @NotNull
     private Date fecha;
 
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     private TipoPago tipoPago;
+
+    public void facturar(){
+        this.orden.setActiva(false);
+    }
 }

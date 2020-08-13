@@ -2,13 +2,11 @@ package com.techstore.web.service;
 
 import com.techstore.web.dao.ItemOrdenRepository;
 import com.techstore.web.dao.OrdenRepository;
-import com.techstore.web.dao.UsuarioRepository;
 import com.techstore.web.model.ItemOrden;
 import com.techstore.web.model.Orden;
 import com.techstore.web.model.Producto;
+import com.techstore.web.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,30 +19,37 @@ public class OrdenService {
     private ItemOrdenRepository itemOrdenRepository;
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UsuarioService usuarioService;
 
     @Autowired
     private ProductoService productoService;
 
-    public Orden gerOrden(){
-        String nombreUsuario = getCurrentNombreUsuario();
-        Orden orden = ordenRepository.getOrdenActiva(nombreUsuario);
+    public Orden findById(Long id){
+        return ordenRepository.findById(id).get();
+    }
+
+    public Orden getCurrentOrden(){
+        Orden orden = getOrdenUsuario(usuarioService.getCurrentUsuario());
         if(orden == null){
             orden = new Orden();
-            orden.setUsuario(usuarioRepository.findByNombreUsuario(nombreUsuario));
+            orden.setUsuario(usuarioService.getCurrentUsuario());
             ordenRepository.save(orden);
-            orden = ordenRepository.getOrdenActiva(nombreUsuario);
+            orden = getOrdenUsuario(usuarioService.getCurrentUsuario());
         } else {
             orden.setItems(itemOrdenRepository.findAllByOrden(orden));
         }
         return orden;
     }
 
+    public Orden getOrdenUsuario(Usuario usuario){
+        return ordenRepository.findFirstByUsuarioAndActivaTrue(usuario);
+    }
+
     public void agregarProductoOrden(Long productoId){
-        // Buscamos el producto y la orden activa
+        // Buscamos el producto y la carrito activa
         Producto producto = productoService.getProductoById(productoId);
-        Orden orden = gerOrden();
-        // Buscamos si existe ya un item con ese producto en la orden
+        Orden orden = getCurrentOrden();
+        // Buscamos si existe ya un item con ese producto en la carrito
         ItemOrden itemOrden = orden.getItems().stream().filter(item -> item.getProducto().equals(producto)).findFirst().orElse(null);
 
         if(itemOrden != null){
@@ -63,8 +68,9 @@ public class OrdenService {
         ordenRepository.save(orden);
     }
 
-    private String getCurrentNombreUsuario(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getName();
+    public void actualizarOrden(Orden ordenActualizar){
+        Orden ordenActual = findById(ordenActualizar.getId());
+        ordenActual.setActiva(ordenActualizar.isActiva());
+        ordenRepository.save(ordenActual);
     }
 }

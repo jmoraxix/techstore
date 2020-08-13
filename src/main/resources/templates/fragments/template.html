@@ -55,7 +55,7 @@
                     </a>
                     <div aria-labelledby="navbarDropdown" class="dropdown-menu">
                         <a class="dropdown-item" th:href="@{/usuarios/{id}(id=${#authentication.name})}">Mi cuenta</a>
-                        <a class="dropdown-item" th:href="@{/misordenes}">Mis ordenes</a>
+                        <a class="dropdown-item" th:href="@{/ordenes}">Mis ordenes</a>
                         <span th:if="${#authorization.expression('isAuthenticated()')}">
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/logout" th:href="@{/logout}">Cerrar sesi&oacute;n</a>

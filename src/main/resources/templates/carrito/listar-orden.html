@@ -45,7 +45,7 @@
                 <!--Table body-->
 
                 <!--Table footer-->
-                <tfooter>
+                <tfooter th:if="${!orden.items.empty}">
                     <tr>
                         <th colspan="4">Total</th>
                         <th>Total Calculado</th>
