@@ -11,6 +11,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Autowired
     CustomAuthenticationProvider customAuthProvider;
     String[] resources = new String[]{
@@ -28,9 +29,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(resources).permitAll()
-//                .antMatchers("/crearusuario", "/techstore").permitAll()
                 .antMatchers("/admin*").access("hasRole('ADMIN')")
                 .antMatchers("/login*").permitAll()
+                .antMatchers("/crearusuario").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

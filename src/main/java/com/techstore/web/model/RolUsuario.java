@@ -12,12 +12,15 @@ import javax.persistence.*;
 @Validated
 @Table(name = "rol_usuario")
 public class RolUsuario implements GrantedAuthority {
+
     @Id
     @GeneratedValue
     private Long id;
+
     @NotNull
     @Column(unique = true)
     private String nombre;
+
     private String descripcion;
 
     @Override

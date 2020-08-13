@@ -8,6 +8,7 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -15,11 +16,14 @@ import java.util.Set;
 @Validated
 @Table(name = "usuario")
 public class Usuario implements UserDetails {
+
     @Id
     private String nombreUsuario;
+
     @NotNull
     @Column(unique = true)
     private String cedula;
+
     @NotNull
     private String contrasena;
 
@@ -29,14 +33,24 @@ public class Usuario implements UserDetails {
 
     @NotNull
     private String nombre;
+
     @NotNull
     private String primerApellido;
+
     private String segundoApellido;
+
     private String telefono;
+
     private String direccion;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_roles", joinColumns = @JoinColumn(name = "usuario_nombre_usuario"), inverseJoinColumns = @JoinColumn(name = "rol_usuario_id"))
     private Set<RolUsuario> rolUsuario;
+
+    public void addRolUsuario(RolUsuario nuevoRol){
+        if(rolUsuario == null) rolUsuario = new HashSet<>();
+        rolUsuario.add(nuevoRol);
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
