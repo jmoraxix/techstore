@@ -3,58 +3,55 @@
 <head>
     <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
     </th:block> /*/-->
-    <title>Listar Usuarios</title>
 </head>
 <body>
-    <div class="container">
-        <header th:insert="fragments/template.html :: header"> </header>
-
-        <div class="row">
-            <div class="col-md-8"><h1>Usuarios</h1></div>
-            <div class="col-md-4"><div class="float-right"><a th:href="@{/usuarios/crear}" class="btn btn-success">Crear</a></div></div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <table id="tablaUsuarios" class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Usuario</th>
-                            <th>C&eacute;dula</th>
-                            <th>Nombre</th>
-                            <th>Tel&eacute;fono</th>
-                            <th>Correo</th>
-                            <th>Rol</th>
-                            <th>Ver</th>
-                            <th>Editar</th>
-                            <th>Eliminar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:if="${listaUsuarios.empty}">
-                            <td colspan="9">No hay usuarios</td>
-                        </tr>
-                        <tr th:each="usuarioTmp : ${listaUsuarios}">
-                            <td scope="row" th:text="${usuarioTmp.nombreUsuario}"/>
-                            <td scope="row" th:text="${usuarioTmp.cedula}"/>
-                            <td th:text="${usuarioTmp.nombre + ' ' + usuarioTmp.primerApellido}"/>
-                            <td th:text="${usuarioTmp.telefono}"/>
-                            <td th:text="${usuarioTmp.correo}"/>
-                            <td>
-                                <div th:each="rol, itemStat : ${usuarioTmp.rolUsuario}">
-                                    <span th:text="*{!itemStat.last ? usuarioTmp.rolUsuario[__${itemStat.index}__].nombre + ', ' : usuarioTmp.rolUsuario[__${itemStat.index}__].nombre}"></span>
-                                </div>
-                            </td>
-                            <td><a th:href="@{/usuarios/{id}(id=${usuarioTmp.nombreUsuario})}" class="btn btn-info">Ver</a></td>
-                            <td><a th:href="@{/usuarios/editar/{id}(id=${usuarioTmp.nombreUsuario})}" class="btn btn-secondary">Editar</a></td>
-                            <td><a th:href="@{/usuarios/eliminar/{id}(id=${usuarioTmp.nombreUsuario})}" class="btn btn-danger">Eliminar</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div th:replace="fragments/template.html :: notificaciones"></div>
-        <div th:replace="fragments/template.html :: footer"></div>
+<div th:replace="fragments/template.html :: header"> </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8"><h1>Usuarios</h1></div>
+        <div class="col-md-4"><div class="float-right"><a th:href="@{/usuarios/crear}" class="btn btn-success">Crear</a></div></div>
     </div>
+    <div class="row">
+        <div class="col-12">
+            <table id="tablaUsuarios" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>C&eacute;dula</th>
+                        <th>Nombre</th>
+                        <th>Tel&eacute;fono</th>
+                        <th>Correo</th>
+                        <th>Rol</th>
+                        <th>Ver</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:if="${listaUsuarios.empty}">
+                        <td colspan="9">No hay usuarios</td>
+                    </tr>
+                    <tr th:each="usuarioTmp : ${listaUsuarios}">
+                        <td scope="row" th:text="${usuarioTmp.nombreUsuario}"/>
+                        <td scope="row" th:text="${usuarioTmp.cedula}"/>
+                        <td th:text="${usuarioTmp.nombre + ' ' + usuarioTmp.primerApellido}"/>
+                        <td th:text="${usuarioTmp.telefono}"/>
+                        <td th:text="${usuarioTmp.correo}"/>
+                        <td>
+                            <div th:each="rol, itemStat : ${usuarioTmp.rolUsuario}">
+                                <span th:text="*{!itemStat.last ? usuarioTmp.rolUsuario[__${itemStat.index}__].nombre + ', ' : usuarioTmp.rolUsuario[__${itemStat.index}__].nombre}"></span>
+                            </div>
+                        </td>
+                        <td><a th:href="@{/usuarios/{id}(id=${usuarioTmp.nombreUsuario})}" class="btn btn-info">Ver</a></td>
+                        <td><a th:href="@{/usuarios/editar/{id}(id=${usuarioTmp.nombreUsuario})}" class="btn btn-secondary">Editar</a></td>
+                        <td><a th:href="@{/usuarios/eliminar/{id}(id=${usuarioTmp.nombreUsuario})}" class="btn btn-danger">Eliminar</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/template.html :: notificaciones"></div>
+<div th:replace="fragments/template.html :: footer"></div>
 </body>
 </html>

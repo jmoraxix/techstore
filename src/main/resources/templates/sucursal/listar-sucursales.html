@@ -3,54 +3,53 @@
 <head>
     <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
     </th:block> /*/-->
-    <title>Sucursales</title>
 </head>
 <body>
-    <div class="container">
-        <header th:insert="fragments/template.html :: header"></header>
-        <div class="row">
-            <div class="col-md-8"><h1>Sucursales</h1></div>
-            <div class="col-md-4"><div class="float-right"><a th:href="@{/sucursal/crear}" class="btn btn-success">Crear</a></div></div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <!--Table-->
-                <table id="tablasucursales" class="table table-striped">
-                    <!--Table head-->
-                    <thead>
-                        <tr>
-                            <th>Codigo</th>
-                            <th>Nombre</th>
-                            <th>Provincia</th>
-                            <th>Canton</th>
-                            <th>Distrito</th>
-                            <th>Telefono</th>
-                        </tr>
-                    </thead>
-                    <!--Table head-->
-                    <!--Table body-->
-                    <tbody>
-                    <tr th:if="${listaSucursales.empty}">
-                        <td colspan="4">No hay sucursales disponibles.</td>
-                    </tr>
-                    <tr th:each="SucursalTemp : ${listaSucursales}">
-                        <td th:text="${SucursalTemp.id}" />
-                        <td th:text="${SucursalTemp.nombre}" />
-                        <td th:text="${SucursalTemp.provincia}" />
-                        <td th:text="${SucursalTemp.canton}" />
-                        <td th:text="${SucursalTemp.distrito}" />
-                        <td th:text="${SucursalTemp.telefono}" />
-                        <td><a th:href="@{/sucursal/{codigo}(codigo=${SucursalTemp.id})}" class="btn btn-info">Ver</a></td>
-                        <td><a th:href="@{/sucursal/editar/{codigo}(codigo=${SucursalTemp.id})}" class="btn btn-secondary">Editar</a></td>
-                        <td><a th:href="@{/sucursal/eliminar/{id}(id=${SucursalTemp.id})}" class="btn btn-danger">Eliminar</a></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div th:replace="fragments/template.html :: notificaciones"></div>
-        <div th:replace="fragments/template.html :: footer"></div>
+<div th:insert="fragments/template.html :: header"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8"><h1>Sucursales</h1></div>
+        <div class="col-md-4"><div class="float-right"><a th:href="@{/sucursal/crear}" class="btn btn-success">Crear</a></div></div>
     </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <!--Table-->
+            <table id="tablasucursales" class="table table-striped">
+                <!--Table head-->
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Nombre</th>
+                        <th>Provincia</th>
+                        <th>Canton</th>
+                        <th>Distrito</th>
+                        <th>Telefono</th>
+                    </tr>
+                </thead>
+                <!--Table head-->
+                <!--Table body-->
+                <tbody>
+                <tr th:if="${listaSucursales.empty}">
+                    <td colspan="4">No hay sucursales disponibles.</td>
+                </tr>
+                <tr th:each="SucursalTemp : ${listaSucursales}">
+                    <td th:text="${SucursalTemp.id}" />
+                    <td th:text="${SucursalTemp.nombre}" />
+                    <td th:text="${SucursalTemp.provincia}" />
+                    <td th:text="${SucursalTemp.canton}" />
+                    <td th:text="${SucursalTemp.distrito}" />
+                    <td th:text="${SucursalTemp.telefono}" />
+                    <td><a th:href="@{/sucursal/{codigo}(codigo=${SucursalTemp.id})}" class="btn btn-info">Ver</a></td>
+                    <td><a th:href="@{/sucursal/editar/{codigo}(codigo=${SucursalTemp.id})}" class="btn btn-secondary">Editar</a></td>
+                    <td><a th:href="@{/sucursal/eliminar/{id}(id=${SucursalTemp.id})}" class="btn btn-danger">Eliminar</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/template.html :: notificaciones"></div>
+<div th:replace="fragments/template.html :: footer"></div>
 </body>
 </html>

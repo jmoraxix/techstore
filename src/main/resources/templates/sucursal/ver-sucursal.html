@@ -3,11 +3,10 @@
 <head>
     <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
     </th:block> /*/-->
-    <title>Sucursales</title>
 </head>
 <body>
+<div th:insert="fragments/template.html :: header"></div>
 <div class="container">
-    <header th:insert="fragments/template.html :: header"></header>
     <div class="row">
         <div class="col-12">
             <form action="#" th:object="${sucursal}">
@@ -43,5 +42,6 @@
         </div>
     </div>
 </div>
+<div th:replace="fragments/template.html :: footer"></div>
 </body>
 </html>

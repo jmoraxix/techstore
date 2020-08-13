@@ -6,16 +6,15 @@
     <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
 <body>
+<div th:replace="fragments/template.html :: header"></div>
 <div class="container">
-    <header class="center" th:insert="fragments/template.html :: header"></header>
-
     <div class="row">
         <div class="col-3">
             <h5>Categor&iacute;as</h5>
             <ul class="list-group list-group-flush">
                 <div th:each="opcionMenu : ${listaMenu}">
                     <li class="list-group-item"
-                            th:classappend="${opcionMenu.id == categoriaSeleccionada && tipoProductoSeleccionado == null} ? list-group-item-primary">
+                        th:classappend="${opcionMenu.id == categoriaSeleccionada && tipoProductoSeleccionado == null} ? list-group-item-primary">
                         <a th:href="@{/home/{categoriaId}(categoriaId=${opcionMenu.id})}" th:text="${opcionMenu.nombre}"/>
                     </li>
                     <div th:if="${!opcionMenu.tipoProductos.empty}" class="sublist">
@@ -62,9 +61,8 @@
             </div>
         </div>
     </div>
-
-    <div th:replace="fragments/template.html :: notificaciones"></div>
-    <footer th:replace="fragments/template.html :: footer"></footer>
 </div>
+<div th:replace="fragments/template.html :: notificaciones"></div>
+<div th:replace="fragments/template.html :: footer"></div>
 </body>
 </html>

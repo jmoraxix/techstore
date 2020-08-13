@@ -5,9 +5,8 @@
     </th:block> /*/-->
 </head>
 <body>
+<div th:insert="fragments/template.html :: header"></div>
 <div class="container">
-    <header th:insert="fragments/template.html :: header"></header>
-
     <div class="jumbotron">
         <h1>Bienvenido</h1>
         <br>
@@ -22,8 +21,7 @@
         <a href="/inventario/">Inventario</a><br>
         <a href="/home/">Home</a><br>
     </div>
-
-    <footer th:replace="fragments/template.html :: footer"></footer>
 </div>
+<div th:replace="fragments/template.html :: footer"></div>
 </body>
 </html>

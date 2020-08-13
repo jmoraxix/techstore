@@ -5,63 +5,61 @@
     </th:block> /*/-->
 </head>
 <body>
-    <div class="container">
-        <header th:insert="fragments/template.html :: header"> </header>
-
-        <div class="row">
-            <div class="col-md-8"><h1>Carrito</h1></div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <!--Table-->
-                <table id="tablaOrden" class="table table-striped">
-                    <!--Table head-->
-                    <thead>
-                        <tr>
-                            <th>C&oacute;digo</th>
-                            <th>Producto</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            <th>Subtotal</th>
-                            <th>Ver</th>
-                            <th>Eliminar</th>
-                        </tr>
-                    </thead>
-                    <!--Table head-->
-                    <!--Table body-->
-                    <tbody>
-                        <tr th:if="${orden.items.empty}">
-                            <td colspan="7">No hay productos en el carrito</td>
-                        </tr>
-                        <tr th:each="itemOrden : ${orden.items}">
-                            <td scope="row" th:text="${itemOrden.producto.id}"/>
-                            <td th:text="${itemOrden.producto.nombre}"/>
-                            <td th:text="${itemOrden.producto.precio}"/>
-                            <td th:text="${itemOrden.cantidad}"/>
-                            <td th:text="${itemOrden.cantidad}"/> <!-- TODO Calcular Precio * cantidad -->
-                            <td><a th:href="@{/producto/{id}(id=${itemOrden.producto.id})}" class="btn btn-info">Ver</a></td>
-                            <td><a th:href="@{/usuarios/roles/eliminar/{id}(id=${itemOrden.id})}" class="btn btn-danger">Eliminar</a></td>
-                        </tr>
-                    </tbody>
-                    <!--Table body-->
-
-                    <!--Table footer-->
-                    <tfooter>
-                        <tr>
-                            <th colspan="4">Total</th>
-                            <th>Total Calculado</th>
-                            <th></th>
-                            <th><a th:href="@{/facturar}" class="btn btn-success">Comprar</a></th>
-                        </tr>
-                    </tfooter>
-                    <!--Table footer-->
-                </table>
-                <!--Table-->
-            </div>
-        </div>
-
-        <div th:replace="fragments/template.html :: notificaciones"></div>
-        <div th:replace="fragments/template.html :: footer"></div>
+<div th:replace="fragments/template.html :: header"> </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8"><h1>Carrito</h1></div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <!--Table-->
+            <table id="tablaOrden" class="table table-striped">
+                <!--Table head-->
+                <thead>
+                    <tr>
+                        <th>C&oacute;digo</th>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                        <th>Ver</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <!--Table head-->
+                <!--Table body-->
+                <tbody>
+                    <tr th:if="${orden.items.empty}">
+                        <td colspan="7">No hay productos en el carrito</td>
+                    </tr>
+                    <tr th:each="itemOrden : ${orden.items}">
+                        <td scope="row" th:text="${itemOrden.producto.id}"/>
+                        <td th:text="${itemOrden.producto.nombre}"/>
+                        <td th:text="${itemOrden.producto.precio}"/>
+                        <td th:text="${itemOrden.cantidad}"/>
+                        <td th:text="${itemOrden.cantidad}"/> <!-- TODO Calcular Precio * cantidad -->
+                        <td><a th:href="@{/producto/{id}(id=${itemOrden.producto.id})}" class="btn btn-info">Ver</a></td>
+                        <td><a th:href="@{/usuarios/roles/eliminar/{id}(id=${itemOrden.id})}" class="btn btn-danger">Eliminar</a></td>
+                    </tr>
+                </tbody>
+                <!--Table body-->
+
+                <!--Table footer-->
+                <tfooter>
+                    <tr>
+                        <th colspan="4">Total</th>
+                        <th>Total Calculado</th>
+                        <th></th>
+                        <th><a th:href="@{/facturar}" class="btn btn-success">Comprar</a></th>
+                    </tr>
+                </tfooter>
+                <!--Table footer-->
+            </table>
+            <!--Table-->
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/template.html :: notificaciones"></div>
+<div th:replace="fragments/template.html :: footer"></div>
 </body>
 </html>

@@ -5,9 +5,8 @@
         </th:block> /*/-->
  </head>
 <body>
+<div th:replace="fragments/template.html :: header"> </div>
 <div class="container">
-    <header th:insert="fragments/template.html :: header"> </header>
-
     <div class="row">
         <div class="col-12">
             <form  th:action="@{/sucursal/{modo}/{codigo}(modo=${modo},codigo=${sucursal.id})}" th:object="${sucursal}" method="post" >
@@ -56,13 +55,7 @@
 
         </div>
     </div>
-
-
-
-
-
-
-    <footer th:replace="fragments/template.html :: footer"></footer>
 </div>
+<div th:replace="fragments/template.html :: footer"></div>
 </body>
 </html>

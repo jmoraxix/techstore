@@ -3,12 +3,10 @@
 <head>
     <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
         </th:block> /*/-->
-    <title>Error page</title>
 </head>
 <body th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
+<div th:replace="fragments/template.html :: header"> </div>
 <div class="container">
-    <header th:insert="fragments/template.html :: header"> </header>
-
     <h1 th:text="|${httpStatus} - ${httpStatus.reasonPhrase}|">404</h1>
     <p th:text="${errorMessage}">Error java.lang.NullPointerException</p>
     <table>
@@ -43,8 +41,7 @@
             </td>
         </tr>
     </table>
-
-    <div th:replace="fragments/template.html :: footer"></div>
 </div>
+<div th:replace="fragments/template.html :: footer"></div>
 </body>
 </html>

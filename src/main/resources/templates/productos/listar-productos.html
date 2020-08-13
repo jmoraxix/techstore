@@ -3,11 +3,10 @@
 <head>
     <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
     </th:block> /*/-->
-    <title>Listar Productos</title>
 </head>
 <body>
+<div th:insert="fragments/template.html :: header"></div>
 <div class="container">
-    <header th:insert="fragments/template.html :: header"></header>
     <div class="row">
         <div class="col-8"><h1>Productos</h1></div>
         <div class="col-md-4">
@@ -18,46 +17,43 @@
         <div class="col-12">
             <table class="table table-striped table-bordered" id="tablaProductos">
                 <thead class="thead-light">
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Tipo producto</th>
-                    <th>Precio</th>
-                    <th>Marca</th>
-                    <th>Modelo</th>
-                    <th>Descripcion</th>
-                    <th>Ver</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Tipo producto</th>
+                        <th>Precio</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Descripcion</th>
+                        <th>Ver</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
                 </thead>
 
                 <tbody>
-                <tr th:if="${listaProductos.empty}">
-                    <td colspan="4">No hay productos disponibles.</td>
-                </tr>
-                <tr th:each="productosTmp : ${listaProductos}">
-                    <td th:text="${productosTmp.id}"/>
-                    <td th:text="${productosTmp.nombre}"/>
-                    <td th:text="${productosTmp.tipoProducto.nombre}"></td>
-                    <td th:text="${productosTmp.precio}"/>
-                    <td th:text="${productosTmp.marca.nombre}"/>
-                    <td th:text="${productosTmp.modelo}"/>
-                    <td th:text="${productosTmp.descripcion}"/>
-                    <td><a class="btn btn-info" th:href="@{/productos/{id}(id=${productosTmp.id})}">Ver</a></td>
-                    <td><a class="btn btn-secondary" th:href="@{/productos/editar/{id}(id=${productosTmp.id})}">Editar</a></td>
-                    <td><a class="btn btn-danger" th:href="@{/productos/eliminar/{id}(id=${productosTmp.id})}">Eliminar</a>
-                    </td>
-                </tr>
-                </tr>
+                    <tr th:if="${listaProductos.empty}">
+                        <td colspan="4">No hay productos disponibles.</td>
+                    </tr>
+                    <tr th:each="productosTmp : ${listaProductos}">
+                        <td th:text="${productosTmp.id}"/>
+                        <td th:text="${productosTmp.nombre}"/>
+                        <td th:text="${productosTmp.tipoProducto.nombre}"></td>
+                        <td th:text="${productosTmp.precio}"/>
+                        <td th:text="${productosTmp.marca.nombre}"/>
+                        <td th:text="${productosTmp.modelo}"/>
+                        <td th:text="${productosTmp.descripcion}"/>
+                        <td><a class="btn btn-info" th:href="@{/productos/{id}(id=${productosTmp.id})}">Ver</a></td>
+                        <td><a class="btn btn-secondary" th:href="@{/productos/editar/{id}(id=${productosTmp.id})}">Editar</a></td>
+                        <td><a class="btn btn-danger" th:href="@{/productos/eliminar/{id}(id=${productosTmp.id})}">Eliminar</a>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-
 <div th:replace="fragments/template.html :: notificaciones"></div>
 <div th:replace="fragments/template.html :: footer"></div>
-</div>
 </body>
 </html>
