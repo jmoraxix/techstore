@@ -27,7 +27,9 @@ h2 {
   color: #cccccc;
 }
 
-
+svg {
+   padding: 5px;
+}
 
 /* STRUCTURE */
 
