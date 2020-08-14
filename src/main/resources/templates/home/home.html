@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row">
         <div class="col-3">
-            <h5>Categor&iacute;as</h5>
+            <h5><a th:href="@{/home/}" class="text-dark">Categor&iacute;as</a></h5>
             <ul class="list-group list-group-flush">
                 <div th:each="opcionMenu : ${listaMenu}">
                     <li class="list-group-item"
@@ -20,12 +20,12 @@
                             <path fill-rule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
                         </svg></a>
                     </li>
-                    <div th:if="${!opcionMenu.tipoProductos.empty}" class="sublist collapse" th:id="collapse_+${opcionMenu.id}">
+                    <div th:if="${!opcionMenu.tipoProductos.empty}" class="collapse" th:id="collapse_+${opcionMenu.id}">
                         <ul class="list-group">
                             <li class="list-group-item" th:each="opcionSubmenu : ${opcionMenu.tipoProductos}"
                                 th:classappend="${opcionSubmenu.id == tipoProductoSeleccionado} ? list-group-item-primary">
-                                <a th:href="@{/home/{categoriaId}/{subCategoriaId}(categoriaId = ${opcionMenu.Id}, subCategoriaId = ${opcionSubmenu.Id})}"
-                                   th:text="${opcionSubmenu.nombre}"/>
+                                <a class="text-dark" th:href="@{/home/{categoriaId}/{subCategoriaId}(categoriaId = ${opcionMenu.Id}, subCategoriaId = ${opcionSubmenu.Id})}"
+                                   th:text="'•'+${opcionSubmenu.nombre}"/>
                             </li>
                         </ul>
                     </div>
