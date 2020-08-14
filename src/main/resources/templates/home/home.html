@@ -16,8 +16,11 @@
                     <li class="list-group-item"
                         th:classappend="${opcionMenu.id == categoriaSeleccionada && tipoProductoSeleccionado == null} ? list-group-item-primary">
                         <a th:href="@{/home/{categoriaId}(categoriaId=${opcionMenu.id})}" th:text="${opcionMenu.nombre}"/>
+                        <a class="btn collapsed float-sm-right" height="1em" width="1em" data-toggle="collapse" th:attr="data-target='#collapse_'+${opcionMenu.id}" th:aria-controls="${opcionMenu.id}" aria-expanded="false" ><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots-vertical" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                        </svg></a>
                     </li>
-                    <div th:if="${!opcionMenu.tipoProductos.empty}" class="sublist">
+                    <div th:if="${!opcionMenu.tipoProductos.empty}" class="sublist collapse" th:id="collapse_+${opcionMenu.id}">
                         <ul class="list-group">
                             <li class="list-group-item" th:each="opcionSubmenu : ${opcionMenu.tipoProductos}"
                                 th:classappend="${opcionSubmenu.id == tipoProductoSeleccionado} ? list-group-item-primary">
