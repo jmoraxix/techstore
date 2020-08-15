@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @Log4j2
-@RequestMapping("/subirimagen")
+@RequestMapping("/admin/subirimagen")
 public class FileUploadController {
 
 	private final StorageService storageService;

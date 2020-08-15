@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @RestController
 @Log4j2
-@RequestMapping("/sucursal")
+@RequestMapping("/admin/sucursal")
 public class SucursalController {
 
     @Autowired

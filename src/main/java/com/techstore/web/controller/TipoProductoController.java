@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @RestController
 @Log4j2
-@RequestMapping("/tipoproducto")
+@RequestMapping("/admin/tipoproducto")
 public class TipoProductoController {
     @Autowired
     private TipoProductoRepository tipoProductoRepository;

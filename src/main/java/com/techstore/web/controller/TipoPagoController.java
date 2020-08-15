@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @RestController
 @Log4j2
-@RequestMapping("/tipopago")
+@RequestMapping("/admin/tipopago")
 public class TipoPagoController {
 
     @Autowired

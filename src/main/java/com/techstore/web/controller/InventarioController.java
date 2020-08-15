@@ -19,7 +19,7 @@ import java.util.Optional;
 
 @RestController
 @Log4j2
-@RequestMapping("/inventario")
+@RequestMapping("/admin/inventario")
 public class InventarioController {
 
     @Autowired

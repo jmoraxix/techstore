@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @RestController
 @Log4j2
-@RequestMapping("/marcas")
+@RequestMapping("/admin/marcas")
 public class MarcaController {
 
     @Autowired
