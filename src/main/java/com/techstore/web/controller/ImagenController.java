@@ -2,6 +2,7 @@ package com.techstore.web.controller;
 
 import com.techstore.web.dao.ImagenRepository;
 import com.techstore.web.model.Imagen;
+import com.techstore.web.service.ProductoService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -16,11 +17,14 @@ import java.util.Optional;
 
 @RestController
 @Log4j2
-@RequestMapping("/imagenes")
+@RequestMapping("/admin/imagenes")
 public class ImagenController {
 
     @Autowired
     private ImagenRepository imagenRepository;
+
+    @Autowired
+    private ProductoService productoService;
 
     @GetMapping("/")
     public ModelAndView listarImagenes(ModelMap model) {
@@ -30,9 +34,10 @@ public class ImagenController {
     }
 
     @GetMapping("/crear")
-    public ModelAndView crearImagen(ModelMap model, @RequestHeader("referer") String referer) {
+    public ModelAndView crearImagen(ModelMap model) {
         model.addAttribute("imagen", new Imagen());
-        model.addAttribute("urlAtras", referer);
+        model.addAttribute("listaProductos", productoService.findAll());
+        model.addAttribute("modo", "crear");
         return new ModelAndView("imagenes/editar-imagen", model);
     }
 
@@ -40,22 +45,21 @@ public class ImagenController {
     public ModelAndView guardarImagen(@Valid @ModelAttribute("imagen") Imagen imagen, BindingResult result, RedirectAttributes redirectAttrs) {
         imagenRepository.save(imagen);
         redirectAttrs.addFlashAttribute("mensaje", "Nueva imagen creada");
-        return new ModelAndView("redirect:/imagenes/");
+        return new ModelAndView("redirect:/admin/imagenes/");
     }
 
     @GetMapping("/{imagenId}")
-    public ModelAndView mostrarImagen(@PathVariable long imagenId, ModelMap model, @RequestHeader("referer") String referer) {
+    public ModelAndView mostrarImagen(@PathVariable long imagenId, ModelMap model) {
         Optional<Imagen> imagen = imagenRepository.findById(imagenId);
         model.addAttribute("imagen", imagen.get());
-        model.addAttribute("urlAtras", referer);
         return new ModelAndView("imagenes/ver-imagen", model);
     }
 
     @GetMapping("/editar/{imagenId}")
-    public ModelAndView editarImagen(@PathVariable Long imagenId, ModelMap model, @RequestHeader("referer") String referer) {
+    public ModelAndView editarImagen(@PathVariable Long imagenId, ModelMap model) {
         Optional<Imagen> imagen = imagenRepository.findById(imagenId);
         model.addAttribute("imagen", imagen.get());
-        model.addAttribute("urlAtras", referer);
+        model.addAttribute("modo", "editar");
         return new ModelAndView("imagenes/editar-imagen", model);
     }
 
@@ -63,14 +67,14 @@ public class ImagenController {
     public ModelAndView actualizarImagen(@Valid @ModelAttribute("imagen") Imagen imagen, BindingResult result, RedirectAttributes redirectAttrs) {
         imagenRepository.save(imagen);
         redirectAttrs.addFlashAttribute("mensaje", "Imagen actualizada exitosamente");
-        return new ModelAndView("redirect:/imagenes/");
+        return new ModelAndView("redirect:/admin/imagenes/");
     }
 
     @GetMapping("/eliminar/{imagenId}")
     public ModelAndView eliminarImagen(@PathVariable Long imagenId, RedirectAttributes redirectAttrs){
         imagenRepository.deleteById(imagenId);
         redirectAttrs.addFlashAttribute("mensaje","Imagen eliminada exitosamente");
-        return new ModelAndView("redirect:/imagenes/");
+        return new ModelAndView("redirect:/admin/imagenes/");
     }
 
 }

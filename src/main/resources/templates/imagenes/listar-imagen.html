@@ -12,7 +12,7 @@
             <h1>Imagenes</h1>
         </div>
         <div class="col-md-8">
-            <div class="float-rigth"><a th:href="@{/imagenes/crear}" class="btn btn-success">Crear</a></div>
+            <div class="float-rigth"><a th:href="@{/admin/imagenes/crear}" class="btn btn-success">Crear</a></div>
             <h1></h1>
         </div>
     </div>
@@ -22,9 +22,9 @@
             <table id="tablaUsuarios" class="table table-striped">
                 <thead>
                     <tr>
+                        <th>Producto</th>
                         <th>Codigo</th>
                         <th>Nombre</th>
-                        <th>Ubicacion</th>
                         <th>Ver</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
@@ -32,19 +32,19 @@
                 </thead>
                 <tbody>
                     <tr th:if="${listaImagenes.empty}">
-                        <td colspan="4">No hay imagenes disponibles.</td>
+                        <td colspan="6">No hay imagenes disponibles.</td>
                     </tr>
                     <tr th:each="imagenTmp : ${listaImagenes}">
-                        <td scope="row" th:text="${imagenTmp.imagenId}" />
-                        <td scope="row" th:text="${imagenTmp.imagenNombre}" />
-                        <td th:text="${imagenTmp.Ubicacion}" />
-                        <td><a class="btn btn-info" th:href="@{/imagenes/{id}(id=${imagenTmp.imagenId})}">Ver</a>
+                        <td th:text="${imagenTmp.producto.nombre}" />
+                        <td scope="row" th:text="${imagenTmp.id}" />
+                        <td scope="row" th:text="${imagenTmp.nombre}" />
+                        <td><a class="btn btn-info" th:href="@{/admin/imagenes/{id}(id=${imagenTmp.id})}">Ver</a>
                         </td>
                         <td><a class="btn btn-secondary"
-                                th:href="@{/imagenes/editar/{id}(id=${imagenTmp.imagenId})}">Editar</a>
+                                th:href="@{/admin/imagenes/editar/{id}(id=${imagenTmp.id})}">Editar</a>
                         </td>
                         <td><a class="btn btn-danger"
-                                th:href="@{/imagenes/eliminar/{id}(id=${imagenTmp.imagenId})}">Eliminar</a>
+                                th:href="@{/admin/imagenes/eliminar/{id}(id=${imagenTmp.id})}">Eliminar</a>
                         </td>
                     </tr>
             </table>

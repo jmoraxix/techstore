@@ -9,25 +9,28 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <form th:action="@{/imagenes/editar/{id}(id=${imagen.imagenId})}" method="post" th:object="${imagen}">
+            <form th:action="@{/admin/imagenes/{modo}/{id}(modo=${modo},id=${imagen.id})}" method="post" th:object="${imagen}">
                 <label>Imagen</label>
-            <input type="hidden" id="imagenId" name="imagenId" th:value="${imagen.imagenId}">
+            <input type="hidden" id="id" name="id" th:value="${imagen.id}">
                 <div class="form-group">
                     <div class="col-8">
                         <input class="form-control" placeholder="Nombre de la imagen"
-                               type="text" th:field="*{imagenNombre}"/>
+                               type="text" th:field="*{nombre}"/>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <div class="col-8">
-                        <textarea th:field="*{ubicacion}" placeholder="Direcci&oacute;n de la imagen" cols="40" rows="2"
-                            class="form-control"></textarea>
+                        <select class="form-control" th:field="*{{producto.id}}">
+                            <option th:each="productoTmp : ${listaProductos}"
+                                    th:value="${productoTmp.id}"
+                                    th:selected="${productoTmp.id == imagen.producto.id}"
+                                    th:text="${productoTmp.nombre}">Admin
+                            </option>
+                        </select>
                     </div>
                 </div>
-
                 <div class="form-group">
-                    <a th:href="@{/imagenes/}" class="btn btn-warning">Volver</a>
+                    <a th:href="@{/admin/imagenes/}" class="btn btn-warning">Volver</a>
                     <input class="btn btn-primary" type="submit" value="Guardar">
                 </div>
             </form>
