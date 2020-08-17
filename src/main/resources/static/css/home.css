@@ -1,3 +1,11 @@
 .sublist {
     padding-left: 20px !important;
 }
+.card {
+    max-width: 450px;
+}
+
+.card-img-top {
+    object-fit: fill; /* Do not scale the image */
+    object-position: center;
+}

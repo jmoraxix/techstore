@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-8"><h1>Productos</h1></div>
         <div class="col-md-4">
-            <div class="float-right"><a class="btn btn-success" th:href="@{/productos/crear}">Crear</a></div>
+            <div class="float-right"><a class="btn btn-success" th:href="@{/admin/productos/crear}">Crear</a></div>
         </div>
     </div>
     <div class="row">
@@ -27,6 +27,7 @@
                         <th>Descripcion</th>
                         <th>Ver</th>
                         <th>Editar</th>
+                        <th>Imagenes</th>
                         <th>Eliminar</th>
                     </tr>
                 </thead>
@@ -43,9 +44,10 @@
                         <td th:text="${productosTmp.marca.nombre}"/>
                         <td th:text="${productosTmp.modelo}"/>
                         <td th:text="${productosTmp.descripcion}"/>
-                        <td><a class="btn btn-info" th:href="@{/productos/{id}(id=${productosTmp.id})}">Ver</a></td>
-                        <td><a class="btn btn-secondary" th:href="@{/productos/editar/{id}(id=${productosTmp.id})}">Editar</a></td>
-                        <td><a class="btn btn-danger" th:href="@{/productos/eliminar/{id}(id=${productosTmp.id})}">Eliminar</a>
+                        <td><a class="btn btn-info" th:href="@{/admin/productos/{id}(id=${productosTmp.id})}">Ver</a></td>
+                        <td><a class="btn btn-secondary" th:href="@{/admin/productos/editar/{id}(id=${productosTmp.id})}">Editar</a></td>
+                        <td><a class="btn btn-primary" th:href="@{/admin/productos/{id}/imagenes(id=${productosTmp.id})}">Imagenes</a></td>
+                        <td><a class="btn btn-danger" th:href="@{/admin/productos/eliminar/{id}(id=${productosTmp.id})}">Eliminar</a>
                         </td>
                     </tr>
                 </tbody>

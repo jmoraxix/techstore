@@ -49,9 +49,11 @@ public class ImagenController {
     }
 
     @GetMapping("/{imagenId}")
-    public ModelAndView mostrarImagen(@PathVariable long imagenId, ModelMap model) {
+//    @RequestMapping(value = "/imagenes/{imagenId}", method = RequestMethod.GET)
+    public ModelAndView mostrarImagen(@PathVariable long imagenId, ModelMap model, @RequestHeader("referer") String referer) {
         Optional<Imagen> imagen = imagenRepository.findById(imagenId);
         model.addAttribute("imagen", imagen.get());
+        model.addAttribute("urlAtras", referer);
         return new ModelAndView("imagenes/ver-imagen", model);
     }
 
@@ -71,10 +73,10 @@ public class ImagenController {
     }
 
     @GetMapping("/eliminar/{imagenId}")
-    public ModelAndView eliminarImagen(@PathVariable Long imagenId, RedirectAttributes redirectAttrs){
+    public ModelAndView eliminarImagen(@PathVariable Long imagenId, RedirectAttributes redirectAttrs, @RequestHeader("referer") String referer){
         imagenRepository.deleteById(imagenId);
         redirectAttrs.addFlashAttribute("mensaje","Imagen eliminada exitosamente");
-        return new ModelAndView("redirect:/admin/imagenes/");
+        return new ModelAndView("redirect:" + referer);
     }
 
 }

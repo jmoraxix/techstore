@@ -8,7 +8,7 @@
 <div th:replace="fragments/template.html :: header"> </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-8"><h1 th:text="${titulo}"></h1></div>
+        <div class="col-md-8"><h1>Mis Ordenes</h1></div>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -31,10 +31,11 @@
                         <td colspan="5">No hay ordenes</td>
                     </tr>
                     <tr th:each="facturaTmp : ${listaFacturas}">
-                        <td scope="row" th:text="${facturaTmp.orden.id}"/>
+                        <td scope="row" th:text="${facturaTmp.id}"/>
                         <td th:text="${facturaTmp.fecha}"/>
-                        <td th:text="${#lists.size(facturaTmp.orden.items)}"/>
-                        <td th:text="${#aggregates.sum(facturaTmp.orden.items.producto![precio])}"/>
+<!--                        <td th:text="${#lists.size(facturaTmp.orden.items)}"/>-->
+                        <td th:text="${facturaTmp.orden?.items}"/>
+                        <td th:text="${#aggregates.sum(facturaTmp.orden.items.![subtotal]) * 1.13}"/>
                         <td><a th:href="@{/ordenes/{id}(id=${facturaTmp.orden.id})}" class="btn btn-info">Ver</a></td>
                     </tr>
                 </tbody>

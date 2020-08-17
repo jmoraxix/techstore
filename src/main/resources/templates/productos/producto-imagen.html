@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
+        </th:block> /*/-->
+</head>
+<body>
+<div th:insert="fragments/template.html :: header"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 th:text="'Imagenes de ' + ${producto.nombre}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table id="tablaProductoImagen" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Ver</th>
+                    <th>Eliminar</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${producto.imagenes.empty}">
+                    <td colspan="4">No hay imagenes para este producto.</td>
+                </tr>
+                <tr th:each="imagenTmp : ${producto.imagenes}">
+                    <td scope="row" th:text="${imagenTmp.id}" />
+                    <td scope="row" th:text="${imagenTmp.nombre}" />
+                    <td><a class="btn btn-info" th:href="@{/admin/imagenes/{nombre}(nombre=${imagenTmp.id})}">Ver</a></td>
+                    <td><a class="btn btn-danger" th:href="@{/admin/imagenes/eliminar/{id}(id=${imagenTmp.id})}">Eliminar</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div>
+                <form method="post" enctype="multipart/form-data" th:action="@{/admin/productos/{idProducto}/imagenes/agregar(idProducto=${producto.id})}">
+                    <div class="form-group">
+                        <label for="imagen">Agregar nueva imagen:</label>
+                        <input type="file" class="form-control-file" id="imagen" name="imagen">
+                    </div>
+                    <div class="form-group">
+                        <a th:href="@{{url}(url=${urlAtras})}" class="btn btn-warning">Volver</a>
+                        <input class="btn btn-primary" type="submit" value="Subir imagen"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/template.html :: notificaciones"></div>
+<div th:replace="fragments/template.html :: footer"></div>
+</body>
+</html>

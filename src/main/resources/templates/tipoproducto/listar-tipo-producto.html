@@ -32,13 +32,13 @@
                     <tr th:if="${listaTipoProducto.empty}">
                         <td colspan="6">No hay Tipos de Productos</td>
                     </tr>
-                    <tr th:each="tipoproductoTmp : ${listaTipoProducto}">
-                        <td scope="row" th:text="${tipoproductoTmp.id}" />
-                        <td th:text="${tipoproductoTmp.nombre}"></td>
-                        <td th:text="${tipoproductoTmp.categoria.nombre}"></td>
-                        <td><a th:href="@{/admin/tipoproducto/{id}(id=${tipoproductoTmp.id})}" class="btn btn-info">Ver</a></td>
-                        <td><a th:href="@{/admin/tipoproducto/editar/{id}(id=${tipoproductoTmp.id})}" class="btn btn-secondary">Editar</a></td>
-                        <td><a th:href="@{/admin/tipoproducto/eliminar/{id}(id=${tipoproductoTmp.id})}" class="btn btn-danger">Eliminar</a></td>
+                    <tr th:each="tipoProductoTmp : ${listaTipoProducto}">
+                        <td scope="row" th:text="${tipoProductoTmp.id}" />
+                        <td th:text="${tipoProductoTmp.nombre}"></td>
+                        <td th:text="${tipoProductoTmp.categoria.nombre}"></td>
+                        <td><a th:href="@{/admin/tipoproducto/{id}(id=${tipoProductoTmp.id})}" class="btn btn-info">Ver</a></td>
+                        <td><a th:href="@{/admin/tipoproducto/editar/{id}(id=${tipoProductoTmp.id})}" class="btn btn-secondary">Editar</a></td>
+                        <td><a th:href="@{/admin/tipoproducto/eliminar/{id}(id=${tipoProductoTmp.id})}" class="btn btn-danger">Eliminar</a></td>
                     </tr>
                 </tbody>
                 <!--Table body-->

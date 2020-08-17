@@ -7,7 +7,7 @@
 </head>
 <body>
 <div th:replace="fragments/template.html :: header"></div>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-3">
             <h5><a th:href="@{/home/}" class="text-dark">Categor&iacute;as</a></h5>
@@ -16,48 +16,64 @@
                     <li class="list-group-item"
                         th:classappend="${opcionMenu.id == categoriaSeleccionada && tipoProductoSeleccionado == null} ? list-group-item-primary">
                         <a th:href="@{/home/{categoriaId}(categoriaId=${opcionMenu.id})}" th:text="${opcionMenu.nombre}"/>
-                        <a class="btn collapsed float-sm-right" height="1em" width="1em" data-toggle="collapse" th:attr="data-target='#collapse_'+${opcionMenu.id}" th:aria-controls="${opcionMenu.id}" aria-expanded="false" ><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots-vertical" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                        </svg></a>
+                        <a class="btn collapsed float-sm-right" height="1em" width="1em" data-toggle="collapse"
+                                        th:attr="data-target='#collapse_'+${opcionMenu.id}"
+                                        th:aria-controls="${opcionMenu.id}" aria-expanded="false"
+                                        th:if="${!opcionMenu.tipoProductos.empty}">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots-vertical" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                            </svg>
+                        </a>
                     </li>
                     <div th:if="${!opcionMenu.tipoProductos.empty}" class="collapse" th:id="collapse_+${opcionMenu.id}">
                         <ul class="list-group">
                             <li class="list-group-item" th:each="opcionSubmenu : ${opcionMenu.tipoProductos}"
                                 th:classappend="${opcionSubmenu.id == tipoProductoSeleccionado} ? list-group-item-primary">
                                 <a class="text-dark" th:href="@{/home/{categoriaId}/{subCategoriaId}(categoriaId = ${opcionMenu.Id}, subCategoriaId = ${opcionSubmenu.Id})}"
-                                   th:text="'•'+${opcionSubmenu.nombre}"/>
+                                   th:text="${opcionSubmenu.nombre}"/>
                             </li>
                         </ul>
                     </div>
                 </div>
             </ul>
         </div>
+
         <div class="col-9">
             <div class="card" style="width: 12rem;" th:if="${listaProductos.empty}">
-                <img alt="Default product image" class="card-img-top" th:src="@{/image/product_default.png}"/>
                 <div class="card-body">
                     <p class="card-text">No hay productos</p>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-4 col-sm-6 col-xl-3" th:each="producto : ${listaProductos}">
-                    <div class="card" style="width: 100%;">
-                        <img class="card-img-top" th:alt="${producto.nombre}" th:src="@{/image/product_default.png}"/>
-                        <div class="card-body">
-                            <h5 class="card-title" th:text="${producto.nombre}"/>
-                            <h7 class="card-subtitle mb-2 text-muted" th:text="₡ + ${producto.precio}"/>
-                            <p class="card-text" th:text="${producto.descripcion}"/>
-                            <a class="btn btn-primary" th:href="@{/productos/{id}(id=${producto.id})}">Ver</a>
-                            <a class="btn btn-primary" th:href="@{/carrito/{id}(id=${producto.id})}">
-                                <svg alt="Agregar al carrito" class="bi bi-cart-plus" fill="currentColor" height="1.4em" viewBox="0 0 16 16" width="1.4em"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.5 5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z" fill-rule="evenodd"/>
-                                    <path d="M8 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0v-2z" fill-rule="evenodd"/>
-                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
-                                          fill-rule="evenodd"/>
-                                </svg>
-                            </a>
+                <div class="col-12">
+                    <div>
+                        <div class="card mb-3" th:each="producto : ${listaProductos}">
+                            <div class="row no-gutters">
+                                <div class="col-md-5">
+                                    <img class="card-img-top" th:alt="'Producto ' + ${producto.nombre}"
+                                         th:src="@{/image/productos/{imagen}(imagen=${#lists.isEmpty(producto.imagenes)? 'product_default.png' : producto.imagenes[0].nombre})}"/>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="card-body">
+                                        <h5 class="card-title" th:text="${producto.nombre}"/>
+                                        <h7 class="card-subtitle mb-2 text-muted" th:text="₡ + ${producto.precio}"/>
+                                        <p class="card-text" th:text="${producto.descripcion}"/>
+                                    </div>
+                                    <div class="card-footer">
+                                        <a class="btn btn-primary" th:href="@{/admin/productos/{id}(id=${producto.id})}">Ver</a>
+                                        <a class="btn btn-primary" th:href="@{/carrito/{id}(id=${producto.id})}">
+                                            <svg alt="Agregar al carrito" class="bi bi-cart-plus" fill="currentColor" height="1.4em" viewBox="0 0 16 16" width="1.4em"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8.5 5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z" fill-rule="evenodd"/>
+                                                <path d="M8 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0v-2z" fill-rule="evenodd"/>
+                                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
+                                                      fill-rule="evenodd"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

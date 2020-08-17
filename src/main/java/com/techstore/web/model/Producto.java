@@ -5,6 +5,8 @@ import lombok.Data;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
+import java.util.List;
+
 @Data
 @Entity
 @Validated
@@ -35,5 +37,8 @@ public class Producto {
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     private TipoProducto tipoProducto;
+
+    @OneToMany(mappedBy = "producto", fetch = FetchType.EAGER)
+    private List<Imagen> imagenes;
 }
 
