@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-8"><h1>Categorias</h1></div>
         <div class="col-md-4">
-            <div class="float-right"><a class="btn btn-success" th:href="@{/categorias/crear}">Crear</a></div>
+            <div class="float-right"><a class="btn btn-success" th:href="@{/admin/categorias/crear}">Crear</a></div>
         </div>
     </div>
     <div class="row">
@@ -33,10 +33,10 @@
                 <tr th:each="categoriasTmp : ${listaCategorias}">
                     <td th:text="${categoriasTmp.id}"/>
                     <td th:text="${categoriasTmp.nombre}"/>
-                    <td><a class="btn btn-info" th:href="@{/categorias/{id}(id=${categoriasTmp.id})}">Ver</a></td>
-                    <td><a class="btn btn-secondary" th:href="@{/categorias/editar/{id}(id=${categoriasTmp.id})}">Editar</a>
+                    <td><a class="btn btn-info" th:href="@{/admin/categorias/{id}(id=${categoriasTmp.id})}">Ver</a></td>
+                    <td><a class="btn btn-secondary" th:href="@{/admin/categorias/editar/{id}(id=${categoriasTmp.id})}">Editar</a>
                     </td>
-                    <td><a class="btn btn-danger" th:href="@{/categorias/eliminar/{id}(id=${categoriasTmp.id})}">Eliminar</a>
+                    <td><a class="btn btn-danger" th:href="@{/admin/categorias/eliminar/{id}(id=${categoriasTmp.id})}">Eliminar</a>
                     </td>
                 </tr>
                 </tr>

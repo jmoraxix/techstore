@@ -41,7 +41,7 @@ public class CategoriaController {
     public ModelAndView guardarCategoria(@Valid @ModelAttribute("categoria") Categoria categoria, BindingResult result, RedirectAttributes redirectAttrs) {
         categoriaRepository.save(categoria);
         redirectAttrs.addFlashAttribute("mensaje", "Nueva categoria creada");
-        return new ModelAndView("redirect:/categorias/");
+        return new ModelAndView("redirect:/admin/categorias/");
     }
 
 
@@ -66,14 +66,14 @@ public class CategoriaController {
     public ModelAndView updateCategoria(@Valid @ModelAttribute("categoria") Categoria categoria, BindingResult result, RedirectAttributes redirectAttrs) {
         categoriaRepository.save(categoria);
         redirectAttrs.addFlashAttribute("mensaje", "Categoria actualizada exitosamente");
-        return new ModelAndView("redirect:/categorias/");
+        return new ModelAndView("redirect:/admin/categorias/");
     }
 
     @GetMapping("/eliminar/{categoriaId}")
     public ModelAndView deleteCategoria(@PathVariable Long categoriaId, RedirectAttributes redirectAttrs) {
         categoriaRepository.deleteById(categoriaId);
         redirectAttrs.addFlashAttribute("mensaje", "Categoria eliminada exitosamente");
-        return new ModelAndView("redirect:/categorias/");
+        return new ModelAndView("redirect:/admin/categorias/");
     }
 }
 
