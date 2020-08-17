@@ -51,7 +51,7 @@ public class SubirImagenController {
 	public ModelAndView handleFileUpload(@RequestParam("file") MultipartFile file,RedirectAttributes redirectAttributes) {
 		storageService.store(file);
 		redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + file.getOriginalFilename() + "!");
-		return new ModelAndView("redirect:/subirimagen/");
+		return new ModelAndView("redirect:/admin/subirimagen/");
 	}
 
 	@ExceptionHandler(StorageFileNotFoundException.class)
