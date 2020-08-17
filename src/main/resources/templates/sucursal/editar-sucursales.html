@@ -9,7 +9,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <form  th:action="@{/sucursal/{modo}/{codigo}(modo=${modo},codigo=${sucursal.id})}" th:object="${sucursal}" method="post" >
+            <form  th:action="@{/admin/sucursal/{modo}/{codigo}(modo=${modo},codigo=${sucursal.id})}" th:object="${sucursal}" method="post" >
                 <label><h2>Sucursal</h2></label>
                 <div class="form-group">
                     <div class="col-8">
@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <a th:href="@{/sucursal/}" class="btn btn-warning">Volver</a>
+                    <a th:href="@{/admin/sucursal/}" class="btn btn-warning">Volver</a>
                     <button name="submit" type="submit" class="btn btn-primary">Guardar</button>
                 </div>
             </form>

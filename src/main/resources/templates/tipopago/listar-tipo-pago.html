@@ -9,7 +9,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8"><h1>Tipos de Pagos</h1></div>
-        <div class="col-md-4"><div class="float-right"><a th:href="@{/tipopago/crear}" class="btn btn-success">Crear</a></div></div>
+        <div class="col-md-4"><div class="float-right"><a th:href="@{/admin/tipopago/crear}" class="btn btn-success">Crear</a></div></div>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -36,9 +36,9 @@
                         <td scope="row" th:text="${tipopagoTmp.id}" />
                         <td th:text="${tipopagoTmp.nombre}"></td>
                         <td th:text="${tipopagoTmp.descripcion}"></td>
-                        <td><a th:href="@{/tipopago/{id}(id=${tipopagoTmp.id})}" class="btn btn-info">Ver</a></td>
-                        <td><a th:href="@{/tipopago/editar/{id}(id=${tipopagoTmp.id})}" class="btn btn-secondary">Editar</a></td>
-                        <td><a th:href="@{/tipopago/eliminar/{id}(id=${tipopagoTmp.id})}" class="btn btn-danger">Eliminar</a></td>
+                        <td><a th:href="@{/admin/tipopago/{id}(id=${tipopagoTmp.id})}" class="btn btn-info">Ver</a></td>
+                        <td><a th:href="@{/admin/tipopago/editar/{id}(id=${tipopagoTmp.id})}" class="btn btn-secondary">Editar</a></td>
+                        <td><a th:href="@{/admin/tipopago/eliminar/{id}(id=${tipopagoTmp.id})}" class="btn btn-danger">Eliminar</a></td>
                     </tr>
                 </tbody>
                 <!--Table body-->
