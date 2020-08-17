@@ -21,22 +21,22 @@ import java.util.stream.Collectors;
 @RestController
 @Log4j2
 @RequestMapping("/admin/subirimagen")
-public class FileUploadController {
+public class SubirImagenController {
 
 	private final StorageService storageService;
 
 	@Autowired
-	public FileUploadController(StorageService storageService) {
+	public SubirImagenController(StorageService storageService) {
 		this.storageService = storageService;
 	}
 
 	@GetMapping("/")
 	public ModelAndView listUploadedFiles(Model model) throws IOException {
 		model.addAttribute("files", storageService.loadAll().map(path
-				-> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,"serveFile",
+				-> MvcUriComponentsBuilder.fromMethodName(SubirImagenController.class,"serveFile",
 				path.getFileName().toString()).build().toUri().toString())
 				.collect(Collectors.toList()));
-		return new ModelAndView("uploadForm", (Map<String, ?>) model);
+		return new ModelAndView("imagenes/subir-imagen", (Map<String, ?>) model);
 	}
 
 	@GetMapping("/files/{filename:.+}")
