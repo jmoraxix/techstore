@@ -51,7 +51,7 @@ public class InventarioController {
     public ModelAndView guardarNuevoInventario(@Valid @ModelAttribute("inventario") Inventario inventario, BindingResult result, RedirectAttributes redirectAttrs) {
         inventarioRepository.save(inventario);
         redirectAttrs.addFlashAttribute("mensaje", "Nuevo Articulo agregado al Inventario");
-        return new ModelAndView("redirect:/inventario/");
+        return new ModelAndView("redirect:/admin/inventario/");
     }
 
     @GetMapping("/{inventarioId}")
@@ -75,7 +75,7 @@ public class InventarioController {
     public ModelAndView guardarEditarInventarioId(@Valid @ModelAttribute("inventario") Inventario inventario, BindingResult result, RedirectAttributes redirectAttrs) {
         inventarioRepository.save(inventario);
         redirectAttrs.addFlashAttribute("mensaje", "Inventario actualizado exitosamente");
-        return new ModelAndView("redirect:/inventario/");
+        return new ModelAndView("redirect:/admin/inventario/");
     }
 
     @GetMapping("/eliminar/{inventarioId}")

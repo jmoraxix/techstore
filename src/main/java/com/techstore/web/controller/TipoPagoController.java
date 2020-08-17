@@ -40,7 +40,7 @@ public class TipoPagoController {
     public ModelAndView guardarNuevoTipoPago(@Valid @ModelAttribute("tipoPago") TipoPago tipoPago, BindingResult result, RedirectAttributes redirectAttrs) {
         tipoPagoRepository.save(tipoPago);
         redirectAttrs.addFlashAttribute("mensaje", "Nuevo Tipo de Pago creado");
-        return new ModelAndView("redirect:/tipopago/");
+        return new ModelAndView("redirect:/admin/tipopago/");
     }
 
     @GetMapping("/{tipoPagoId}")
@@ -62,7 +62,7 @@ public class TipoPagoController {
     public ModelAndView guardarEditarTipoPago(@Valid @ModelAttribute("tipoPago") TipoPago tipoPago, BindingResult result, RedirectAttributes redirectAttrs) {
         tipoPagoRepository.save(tipoPago);
         redirectAttrs.addFlashAttribute("mensaje", "Tipo de Pago actualizado exitosamente");
-        return new ModelAndView("redirect:/tipopago/");
+        return new ModelAndView("redirect:/admin/tipopago/");
     }
 
     @GetMapping("/eliminar/{tipoPagoId}")

@@ -9,7 +9,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8"><h1>Roles/tipos de usuarios</h1></div>
-        <div class="col-md-4"><div class="float-right"><a th:href="@{/usuarios/roles/crear}" class="btn btn-success">Crear</a></div></div>
+        <div class="col-md-4"><div class="float-right"><a th:href="@{/admin/usuarios/roles/crear}" class="btn btn-success">Crear</a></div></div>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -36,9 +36,9 @@
                         <td scope="row" th:text="${rolTmp.id}"/>
                         <td th:text="${rolTmp.nombre}"/>
                         <td th:text="${rolTmp.descripcion}"/>
-                        <td><a th:href="@{/usuarios/roles/{id}(id=${rolTmp.id})}" class="btn btn-info">Ver</a></td>
-                        <td><a th:href="@{/usuarios/roles/editar/{id}(id=${rolTmp.id})}" class="btn btn-secondary">Editar</a></td>
-                        <td><a th:href="@{/usuarios/roles/eliminar/{id}(id=${rolTmp.id})}" class="btn btn-danger">Eliminar</a></td>
+                        <td><a th:href="@{/admin/usuarios/roles/{id}(id=${rolTmp.id})}" class="btn btn-info">Ver</a></td>
+                        <td><a th:href="@{/admin/usuarios/roles/editar/{id}(id=${rolTmp.id})}" class="btn btn-secondary">Editar</a></td>
+                        <td><a th:href="@{/admin/usuarios/roles/eliminar/{id}(id=${rolTmp.id})}" class="btn btn-danger">Eliminar</a></td>
                     </tr>
                 </tbody>
                 <!--Table body-->

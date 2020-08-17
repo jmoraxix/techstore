@@ -46,7 +46,7 @@ public class TipoProductoController {
     public ModelAndView guardarNuevoTipoProducto(@Valid @ModelAttribute("tipoProducto") TipoProducto tipoProducto, BindingResult result, RedirectAttributes redirectAttrs) {
         tipoProductoRepository.save(tipoProducto);
         redirectAttrs.addFlashAttribute("mensaje", "Nuevo Tipo de Producto creado");
-        return new ModelAndView("redirect:/tipoproducto/");
+        return new ModelAndView("redirect:/admin/tipoproducto/");
     }
 
     @GetMapping("/{tipoProductoId}")
@@ -69,7 +69,7 @@ public class TipoProductoController {
     public ModelAndView guardarEditarTipoProductoId(@Valid @ModelAttribute("tipoProducto") TipoProducto tipoProducto, BindingResult result, RedirectAttributes redirectAttrs) {
         tipoProductoRepository.save(tipoProducto);
         redirectAttrs.addFlashAttribute("mensaje", "Tipo de Producto actualizado exitosamente");
-        return new ModelAndView("redirect:/tipoproducto/");
+        return new ModelAndView("redirect:/admin/tipoproducto/");
     }
 
     @GetMapping("/eliminar/{tipoProductoId}")

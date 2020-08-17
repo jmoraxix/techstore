@@ -40,7 +40,7 @@ public class RolUsuarioController {
     public ModelAndView guardarNuevoRol(@Valid @ModelAttribute("rol") RolUsuario rol, BindingResult result, RedirectAttributes redirectAttrs) {
         rolUsuarioRepository.save(rol);
         redirectAttrs.addFlashAttribute("mensaje", "Rol creado exitosamente");
-        return new ModelAndView("redirect:/usuarios/roles/");
+        return new ModelAndView("redirect:/admin/usuarios/roles/");
     }
 
     @GetMapping("/{rolId}")
@@ -62,7 +62,7 @@ public class RolUsuarioController {
     public ModelAndView guardarEditarRol(@Valid @ModelAttribute("rol") RolUsuario rol, BindingResult result, RedirectAttributes redirectAttrs) {
         rolUsuarioRepository.save(rol);
         redirectAttrs.addFlashAttribute("mensaje", "Rol actualizado exitosamente");
-        return new ModelAndView("redirect:/usuarios/roles/");
+        return new ModelAndView("redirect:/admin/usuarios/roles/");
     }
 
     @GetMapping("/eliminar/{rolId}")

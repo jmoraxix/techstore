@@ -53,7 +53,7 @@ public class ProductoController {
     public ModelAndView guardarProducto(@Valid @ModelAttribute("producto") Producto producto, BindingResult result, RedirectAttributes redirectAttrs) {
         productoRepository.save(producto);
         redirectAttrs.addFlashAttribute("mensaje", "Nuevo producto creado");
-        return new ModelAndView("redirect:/productos/");
+        return new ModelAndView("redirect:/admin/productos/");
     }
 
     @GetMapping("/{productoId}")
@@ -76,7 +76,7 @@ public class ProductoController {
     public ModelAndView updateProducto(@Valid @ModelAttribute("producto") Producto producto, BindingResult result, RedirectAttributes redirectAttrs) {
         productoRepository.save(producto);
         redirectAttrs.addFlashAttribute("mensaje", "Producto actualizado exitosamente");
-        return new ModelAndView("redirect:/productos/");
+        return new ModelAndView("redirect:/admin/productos/");
     }
 
     @GetMapping("/eliminar/{productoId}")

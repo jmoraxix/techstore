@@ -42,7 +42,7 @@ public class MarcaController {
     public ModelAndView guardarMarca(@Valid @ModelAttribute("marca") Marca marca, BindingResult result, RedirectAttributes redirectAttrs) {
         marcaRepository.save(marca);
         redirectAttrs.addFlashAttribute("mensaje", "Nueva marca creada");
-        return new ModelAndView("redirect:/marcas/");
+        return new ModelAndView("redirect:/admin/marcas/");
     }
 
 
@@ -66,7 +66,7 @@ public class MarcaController {
     public ModelAndView updateMarca(@Valid @ModelAttribute("marca") Marca marca, BindingResult result, RedirectAttributes redirectAttrs) {
         marcaRepository.save(marca);
         redirectAttrs.addFlashAttribute("mensaje", "Marca actualizada exitosamente");
-        return new ModelAndView("redirect:/marcas/");
+        return new ModelAndView("redirect:/admin/marcas/");
     }
 
     @GetMapping("/eliminar/{marcaId}")

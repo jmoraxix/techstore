@@ -9,7 +9,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <form th:action="@{/usuarios/roles/{modo}/{id}(modo=${modo},id=${rol.id})}" method="post" th:object="${rol}">
+            <form th:action="@{/admin/usuarios/roles/{modo}/{id}(modo=${modo},id=${rol.id})}" method="post" th:object="${rol}">
                 <label>Rol</label>
                 <input type="hidden" th:field="*{id}">
                 <div class="form-group">
@@ -21,7 +21,7 @@
                            class="form-control"/>
                 </div>
                 <div class="form-group">
-                    <a th:href="@{/usuarios/roles/}" class="btn btn-warning">Volver</a>
+                    <a th:href="@{/admin/usuarios/roles/}" class="btn btn-warning">Volver</a>
                     <input class="btn btn-primary" type="submit" value="Guardar">
                 </div>
             </form>

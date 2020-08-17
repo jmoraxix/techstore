@@ -41,7 +41,7 @@ public class SucursalController {
     public ModelAndView crearsucursal(@Valid @ModelAttribute("sucursal") Sucursal sucursal, BindingResult result, RedirectAttributes redirectAttrs){
         sucursalRepository.save(sucursal);
         redirectAttrs.addFlashAttribute("mensaje", "Sucursal creada exitosamente");
-        return new ModelAndView("redirect:/sucursal/");
+        return new ModelAndView("redirect:/admin/sucursal/");
     }
 
     @GetMapping("/editar/{codigo}")
@@ -57,7 +57,7 @@ public class SucursalController {
     public ModelAndView guardarSucursal(@Valid @ModelAttribute("sucursal") Sucursal sucursales, BindingResult result, RedirectAttributes redirectAttrs){
         sucursalRepository.save(sucursales);
         redirectAttrs.addFlashAttribute("mensaje", "Sucursal actualizada exitosamente");
-        return new ModelAndView("redirect:/sucursal/");
+        return new ModelAndView("redirect:/admin/sucursal/");
     }
 
     @GetMapping("/{codigo}")
