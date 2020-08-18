@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
+    </th:block> /*/-->
+</head>
+<body>
+<div th:replace="fragments/template.html :: header"> </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8"><h1 th:text="'Factura #' + ${factura.id}"/></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <!--Table-->
+            <table id="tablaOrden" class="table table-striped">
+                <!--Table head-->
+                <thead class="bg-primary text-white">
+                    <tr>
+                        <th>C&oacute;digo</th>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <!--Table head-->
+                <!--Table body-->
+                <tbody>
+                    <tr th:each="itemOrden : ${factura.orden.items}">
+                        <td scope="row" th:text="${itemOrden.producto.id}"/>
+                        <td th:text="${itemOrden.producto.nombre}"/>
+                        <td th:text="'₡' + ${#numbers.formatDecimal(itemOrden.producto.precio, 0, 'COMMA', 2, 'POINT')}"/>
+                        <td th:text="${itemOrden.cantidad}"/>
+                        <td th:text="'₡' + ${#numbers.formatDecimal(itemOrden.subtotal, 0, 'COMMA', 2, 'POINT')}"/>
+                    </tr>
+                </tbody>
+                <!--Table body-->
+                <!--Table footer-->
+                <tfooter th:with="subtotal=${#aggregates.sum(factura.orden.items.![subtotal])}">
+                    <tr>
+                        <td colspan="4">Subtotal</td>
+                        <td><b th:text="'₡' + ${#numbers.formatDecimal(subtotal, 0, 'COMMA', 2, 'POINT')}"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">Impuestos - 13%</td>
+                        <td><b th:text="'₡' + ${#numbers.formatDecimal(subtotal * 0.13, 0, 'COMMA', 2, 'POINT')}"/></td>
+                    </tr>
+                    <tr>
+                        <th colspan="4"><h5>Total</h5></th>
+                        <th><h5 th:text="'₡' + ${#numbers.formatDecimal(subtotal * 1.13, 0, 'COMMA', 2, 'POINT')}"/></th>
+                    </tr>
+                </tfooter>
+                <!--Table footer-->
+            </table>
+            <!--Table-->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a th:href="@{/ordenes}" class="btn btn-warning">Volver</a>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/template.html :: footer"></div>
+</body>
+</html>

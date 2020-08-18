@@ -59,5 +59,11 @@ public class FacturaController {
         return new ModelAndView("facturas/listar-facturas", model);
     }
 
+    @GetMapping("/ordenes/{facturaId}")
+    public ModelAndView mostrarFacturar(@PathVariable Long facturaId, ModelMap model){
+        model.addAttribute("factura", facturaService.findById(facturaId));
+        return new ModelAndView("facturas/mostrar-factura", model);
+    }
+
 
 }
