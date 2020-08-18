@@ -40,7 +40,7 @@
                         <td th:text="${productosTmp.id}"/>
                         <td th:text="${productosTmp.nombre}"/>
                         <td th:text="${productosTmp.tipoProducto.nombre}"></td>
-                        <td th:text="${productosTmp.precio}"/>
+                        <td th:text="'₡' + ${#numbers.formatDecimal(productosTmp.precio, 0, 'COMMA', 2, 'POINT')}"/>
                         <td th:text="${productosTmp.marca.nombre}"/>
                         <td th:text="${productosTmp.modelo}"/>
                         <td th:text="${productosTmp.descripcion}"/>

@@ -39,7 +39,7 @@
                         <td th:text="${usuarioTmp.correo}"/>
                         <td>
                             <div th:each="rol, itemStat : ${usuarioTmp.rolUsuario}">
-                                <span th:text="*{!itemStat.last ? usuarioTmp.rolUsuario[__${itemStat.index}__].nombre + ', ' : usuarioTmp.rolUsuario[__${itemStat.index}__].nombre}"></span>
+                                <span th:text="*{!itemStat.last ? rol.nombre + ', ' : rol.nombre}"></span>
                             </div>
                         </td>
                         <td><a th:href="@{/usuarios/{id}(id=${usuarioTmp.nombreUsuario})}" class="btn btn-info">Ver</a></td>
