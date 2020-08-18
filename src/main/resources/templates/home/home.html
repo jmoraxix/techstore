@@ -61,7 +61,7 @@
                                         <p class="card-text" th:text="${producto.descripcion}"/>
                                     </div>
                                     <div class="card-footer">
-                                        <a class="btn btn-primary" th:href="@{/admin/productos/{id}(id=${producto.id})}">Ver</a>
+                                        <a class="btn btn-primary" th:href="@{/producto/{id}(id=${producto.id})}">Ver</a>
                                         <a class="btn btn-primary" th:href="@{/carrito/{id}(id=${producto.id})}">
                                             <svg alt="Agregar al carrito" class="bi bi-cart-plus" fill="currentColor" height="1.4em" viewBox="0 0 16 16" width="1.4em"
                                                  xmlns="http://www.w3.org/2000/svg">
