@@ -24,8 +24,13 @@
     </a>
     </div>
     </div>
-    <img th:src="buscarimagen"
+    <div class="row">
+    <div class="col-3"> <!--th:each="Ciclo por imagen"-->
+
+    <img th:src="@{/image/productos/{imagen}(imagen=${#lists.isEmpty(producto.imagenes)? 'product_default.png' : producto.imagenes[0].nombre})}"
          class="img-fluid" alt="Responsive image">
+    </div>
+    </div>
     <div class="row">
         <div class="col-4 center"><h3 class="text-center">Modelo</h3></div>
         <div class="col-4 center"><h3 class="text-center">Marca</h3></div>
@@ -45,10 +50,14 @@
 
 
 
+    <div class="row">
+        <div class="col-12">
+            <a type="button" class=" col-12 btn btn-dark text-white" th:href="@{/home/}"> Volver a la Pagina principal</a></div>
+        </div>
+    </div>
 
+    <div th:replace="fragments/template.html :: notificaciones"></div>
+    <div th:replace="fragments/template.html :: footer"></div>
 
-</div>
-<div th:replace="fragments/template.html :: notificaciones"></div>
-<div th:replace="fragments/template.html :: footer"></div>
 </body>
 </html>
