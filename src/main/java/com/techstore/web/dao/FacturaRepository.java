@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface FacturaRepository extends JpaRepository<Factura, Long> {
 
-    @Query("select f from Factura f where f.orden.usuario = :usuario")
-    List<Factura> getAllByUsuario(Usuario usuario);
+    @Query("SELECT f FROM Factura f WHERE f.orden.usuario = :usuario ORDER BY fecha DESC")
+    List<Factura> getOrdenesFromUsuario(Usuario usuario);
 }

@@ -5,7 +5,7 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Date;
+import java.util.Date;
 
 @Data
 @Entity

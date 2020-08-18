@@ -1,11 +1,12 @@
 package com.techstore.web.model;
 
 import lombok.Data;
+import org.springframework.lang.Nullable;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @Entity
@@ -23,7 +24,8 @@ public class Orden {
     @NotNull
     private boolean activa = true;
 
-    @Transient
-    private Set<ItemOrden> items;
+    @Nullable
+    @OneToMany(cascade=CascadeType.REMOVE, mappedBy="orden")
+    private List<ItemOrden> items;
 
 }

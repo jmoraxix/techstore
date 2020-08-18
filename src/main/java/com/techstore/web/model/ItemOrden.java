@@ -16,11 +16,13 @@ public class ItemOrden {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne(fetch= FetchType.EAGER)
+    @ManyToOne
+    @JoinColumn(name="orden_id", nullable=false)
     @ToString.Exclude
     private Orden orden;
 
     @ManyToOne(fetch= FetchType.EAGER)
+    @JoinColumn
     private Producto producto;
 
     @NotNull

@@ -9,6 +9,9 @@ import com.techstore.web.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class OrdenService {
 
@@ -24,25 +27,25 @@ public class OrdenService {
     @Autowired
     private ProductoService productoService;
 
-    public Orden findById(Long id){
+    private Orden findById(Long id){
         return ordenRepository.findById(id).get();
     }
 
     public Orden getCurrentOrden(){
-        Orden orden = getOrdenUsuario(usuarioService.getCurrentUsuario());
-        if(orden == null){
-            orden = new Orden();
-            orden.setUsuario(usuarioService.getCurrentUsuario());
-            ordenRepository.save(orden);
-            orden = getOrdenUsuario(usuarioService.getCurrentUsuario());
-        } else {
-            orden.setItems(itemOrdenRepository.findAllByOrden(orden));
-        }
-        return orden;
+        return getOrdenUsuario(usuarioService.getCurrentUsuario());
     }
 
     public Orden getOrdenUsuario(Usuario usuario){
-        return ordenRepository.findFirstByUsuarioAndActivaTrue(usuario);
+        Orden orden = ordenRepository.findFirstByUsuarioAndActivaTrue(usuario);
+        if(orden == null){
+            orden = new Orden();
+            orden.setUsuario(usuario);
+            ordenRepository.save(orden);
+            orden = ordenRepository.findFirstByUsuarioAndActivaTrue(usuario);
+        } else {
+            orden.setItems(getItemsOrden(orden));
+        }
+        return orden;
     }
 
     public void agregarProductoOrden(Long productoId){
@@ -76,5 +79,10 @@ public class OrdenService {
         Orden ordenActual = findById(ordenActualizar.getId());
         ordenActual.setActiva(ordenActualizar.isActiva());
         ordenRepository.save(ordenActual);
+    }
+
+    private List<ItemOrden> getItemsOrden(Orden orden){
+        List<ItemOrden> listaItems = itemOrdenRepository.findAllByOrden(orden);
+        return listaItems.isEmpty() ? new ArrayList<ItemOrden>() : listaItems;
     }
 }

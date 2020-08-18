@@ -8,10 +8,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -47,7 +44,7 @@ public class FacturaController {
     public ModelAndView facturar(@Valid @ModelAttribute("factura") Factura factura, BindingResult result, RedirectAttributes redirectAttrs){
         factura.facturar();
         ordenService.actualizarOrden(factura.getOrden());
-        facturaService.guardarFactura(factura);
+        facturaService.facturar(factura);
         redirectAttrs.addFlashAttribute("mensaje", "Se ha facturado correctamente.");
         return new ModelAndView("redirect:/ordenes");
     }
