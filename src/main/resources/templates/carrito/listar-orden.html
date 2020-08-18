@@ -35,9 +35,9 @@
                     <tr th:each="itemOrden : ${orden.items}">
                         <td scope="row" th:text="${itemOrden.producto.id}"/>
                         <td th:text="${itemOrden.producto.nombre}"/>
-                        <td th:text="${itemOrden.producto.precio}"/>
+                        <td th:text="'₡' + ${#numbers.formatDecimal(itemOrden.producto.precio, 0, 'COMMA', 2, 'POINT')}"/>
                         <td th:text="${itemOrden.cantidad}"/>
-                        <td th:text="${itemOrden.cantidad * itemOrden.producto.precio}"/>
+                        <td th:text="'₡' + ${#numbers.formatDecimal(itemOrden.producto.precio * itemOrden.cantidad, 0, 'COMMA', 2, 'POINT')}"/>
                         <td><a th:href="@{/producto/{id}(id=${itemOrden.producto.id})}" class="btn btn-info">Ver</a></td>
                         <td><a th:href="@{/usuarios/roles/eliminar/{id}(id=${itemOrden.id})}" class="btn btn-danger">Eliminar</a></td>
                     </tr>
@@ -45,11 +45,10 @@
                 <!--Table body-->
 
                 <!--Table footer-->
-                <tfooter th:if="${!orden.items.empty}">
+                <tfooter th:with="subtotal=${#aggregates.sum(orden.items.![subtotal])}">
                     <tr>
-                        <th colspan="4">Total</th>
-                        <th>Total Calculado</th>
-                        <th></th>
+                        <td colspan="4">TOTAL</td>
+                        <td><b th:text="'₡' + ${#numbers.formatDecimal(subtotal, 0, 'COMMA', 2, 'POINT')}"/></td>
                         <th><a th:href="@{/facturar}" class="btn btn-success">Comprar</a></th>
                     </tr>
                 </tfooter>
