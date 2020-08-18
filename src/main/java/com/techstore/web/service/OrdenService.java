@@ -64,6 +64,10 @@ public class OrdenService {
         }
     }
 
+    public void eliminarProductoOrden(Long itemOrdenId){
+        itemOrdenRepository.deleteById(itemOrdenId);
+    }
+
     public void guardarOrden(Orden orden){
         ordenRepository.save(orden);
     }

@@ -33,4 +33,12 @@ public class OrdenController {
         redirectAttrs.addFlashAttribute("mensaje", "Producto agregado al carrito");
         return new ModelAndView("redirect:" + referer);
     }
+
+    @GetMapping("/eliminar/{itemOrdenId}")
+    @Transactional
+    public ModelAndView eliminarProductoOrden(@PathVariable Long itemOrdenId, RedirectAttributes redirectAttrs){
+        ordenService.eliminarProductoOrden(itemOrdenId);
+        redirectAttrs.addFlashAttribute("mensaje", "Producto eliminado del carrito");
+        return new ModelAndView("redirect:/carrito");
+    }
 }
