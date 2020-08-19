@@ -12,7 +12,9 @@ import java.util.Date;
 @Validated
 @Table(name="factura")
 public class Factura {
+
     @Id
+    @GeneratedValue
     private Long id;
 
     @NotNull

@@ -6,6 +6,7 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -27,5 +28,9 @@ public class Orden {
     @Nullable
     @OneToMany(cascade=CascadeType.REMOVE, mappedBy="orden")
     private List<ItemOrden> items;
+
+    public List<ItemOrden> getItems(){
+        return items != null ? items : new ArrayList<ItemOrden>();
+    }
 
 }
