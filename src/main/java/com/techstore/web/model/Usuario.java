@@ -52,6 +52,10 @@ public class Usuario implements UserDetails {
         rolUsuario.add(nuevoRol);
     }
 
+    public Set<RolUsuario> getRolUsuario(){
+        return rolUsuario != null? rolUsuario : new HashSet<RolUsuario>();
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.rolUsuario;

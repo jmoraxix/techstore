@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-8">
-                        <select class="form-control" multiple="multiple" th:field="*{{parts}}">
+                        <select class="form-control" multiple="multiple" th:field="*{rolUsuario}">
                             <option th:each="rol : ${listaRoles}"
                                     th:value="${rol.id}"
                                     th:selected="${usuario.rolUsuario.contains(rol)}"
