@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Marca {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @NotNull
     private String nombre;

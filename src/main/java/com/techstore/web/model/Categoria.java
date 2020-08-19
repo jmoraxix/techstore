@@ -21,7 +21,7 @@ public class Categoria {
     @Column(unique = true)
     private String nombre;
 
-    private Integer orden;
+    private Integer orden=1;
 
     @OneToMany
     @JoinColumn(name = "categoria_id", referencedColumnName = "id")

@@ -13,7 +13,7 @@ import java.util.Date;
 @Table(name="factura")
 public class Factura {
     @Id
-    private long id;
+    private Long id;
 
     @NotNull
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)

@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Table(name="sucursal")
 public class Sucursal {
     @Id
-    @Column(unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotNull
