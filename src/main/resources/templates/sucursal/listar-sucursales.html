@@ -25,13 +25,16 @@
                         <th>Canton</th>
                         <th>Distrito</th>
                         <th>Telefono</th>
+                        <th>Ver</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
                     </tr>
                 </thead>
                 <!--Table head-->
                 <!--Table body-->
                 <tbody>
                 <tr th:if="${listaSucursales.empty}">
-                    <td colspan="4">No hay sucursales disponibles.</td>
+                    <td colspan="9">No hay sucursales disponibles.</td>
                 </tr>
                 <tr th:each="SucursalTemp : ${listaSucursales}">
                     <td th:text="${SucursalTemp.id}" />
