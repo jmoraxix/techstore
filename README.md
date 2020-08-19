@@ -5,12 +5,12 @@ Tienda virtual usando Spring (Boot, JPA, Security)
 Ulacit. Segundo cuatrimestre, 2020
 
 *Integrantes*\
-Eduardo Castillo Rodas\
-Eduardo José Garrido Rivera\
-Josué David Hernández Amador\
-Michael Steven Monge Mora\
-José David Mora Loría\
-William Sebastian Rojas Ernest
+[Eduardo Castillo Rodas](https://github.com/EdCastillo)\
+[Eduardo José Garrido Rivera](https://github.com/egarridor01)\
+[Josué David Hernández Amador](https://github.com/JosueDAH012)\
+[Michael Steven Monge Mora](https://github.com/Maikmm30)\
+[José David Mora Loría](https://github.com/jmoraxix)\
+[William Sebastian Rojas Ernest](https://github.com/mabas31)
 
 ## Instalación
 1. Generar la base de datos. El archivo SQL se encuentra en */src/database/*
