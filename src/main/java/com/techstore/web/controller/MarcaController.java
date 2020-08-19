@@ -34,6 +34,7 @@ public class MarcaController {
     @GetMapping("/crear")
     public ModelAndView crearMarca(ModelMap model) {
         model.addAttribute("marca", new Marca());
+        model.addAttribute("modo","crear");
         return new ModelAndView("marcas/editar-marca", model);
     }
 
@@ -58,6 +59,7 @@ public class MarcaController {
     public ModelAndView editarMarca(@PathVariable Long marcaId, ModelMap model) {
         Optional<Marca> marca = marcaRepository.findById(marcaId);
         model.addAttribute("marca", marca.get());
+        model.addAttribute("modo","editar");
         return new ModelAndView("marcas/editar-marca", model);
     }
 
