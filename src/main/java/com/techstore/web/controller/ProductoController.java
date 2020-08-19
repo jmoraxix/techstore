@@ -102,7 +102,6 @@ public class ProductoController {
     public ModelAndView listarProductoImagenes(@PathVariable Long productoId, Model model, @RequestHeader("referer") String referer) throws IOException {
         Producto producto = productoRepository.findById(productoId).get();
         model.addAttribute("producto", producto);
-        model.addAttribute("urlAtras", referer);
         return new ModelAndView("productos/producto-imagen");
     }
 
