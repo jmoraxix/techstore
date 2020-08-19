@@ -71,7 +71,7 @@ public class SucursalController {
     public ModelAndView deleteSucursal(@PathVariable Long SucursalId, RedirectAttributes redirectAttrs){
         sucursalRepository.deleteById(SucursalId);
         redirectAttrs.addFlashAttribute("mensaje", "Sucursal eliminada exitosamente");
-        return new ModelAndView("redirect:/sucursal/");
+        return new ModelAndView("redirect:/admin/sucursal/");
     }
 
 }

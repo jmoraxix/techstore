@@ -73,7 +73,7 @@ public class MarcaController {
     public ModelAndView deleteMarca(@PathVariable Long marcaId, RedirectAttributes redirectAttrs) {
         marcaRepository.deleteById(marcaId);
         redirectAttrs.addFlashAttribute("mensaje", "Marca eliminada exitosamente");
-        return new ModelAndView("redirect:/marcas/");
+        return new ModelAndView("redirect:/admin/marcas/");
     }
 }
 

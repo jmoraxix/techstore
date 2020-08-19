@@ -69,6 +69,6 @@ public class TipoPagoController {
     public ModelAndView eliminarTipoPago(@PathVariable Long tipoPagoId, RedirectAttributes redirectAttrs){
         tipoPagoRepository.deleteById(tipoPagoId);
         redirectAttrs.addFlashAttribute("mensaje", "Tipo de Pago eliminado exitosamente");
-        return new ModelAndView("redirect:/tipopago/");
+        return new ModelAndView("redirect:/admin/tipopago/");
     }
 }
