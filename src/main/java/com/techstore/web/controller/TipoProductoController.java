@@ -76,7 +76,7 @@ public class TipoProductoController {
     public ModelAndView eliminarTipoProducto(@PathVariable Long tipoProductoId, RedirectAttributes redirectAttrs){
         tipoProductoRepository.deleteById(tipoProductoId);
         redirectAttrs.addFlashAttribute("mensaje", "Tipo de Producto eliminado exitosamente");
-        return new ModelAndView("redirect:/tipoproducto/");
+        return new ModelAndView("redirect:/admin/tipoproducto/");
     }
 }
 
