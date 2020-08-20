@@ -10,7 +10,7 @@ Ulacit. Segundo cuatrimestre, 2020
 [Josué David Hernández Amador](https://github.com/JosueDAH012)\
 [Michael Steven Monge Mora](https://github.com/Maikmm30)\
 [José David Mora Loría](https://github.com/jmoraxix)\
-[William Sebastian Rojas Ernest](https://github.com/mabas31)\
+[William Sebastian Rojas Ernest](https://github.com/mabas31)
 
 ## Instalación
 1. Generar la base de datos. El archivo SQL se encuentra en */src/database/*
